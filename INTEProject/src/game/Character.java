@@ -1,4 +1,4 @@
-package gameClassesTest;
+package game;
 
 public class Character {
 	 
