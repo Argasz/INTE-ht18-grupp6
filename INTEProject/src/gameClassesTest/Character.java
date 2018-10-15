@@ -1,12 +1,12 @@
 package gameClassesTest;
 
-public class CharacterTest {
+public class Character {
 	 
 	// Sätter upp eclipse med Github - TEST
 	
 	private String test;
 	
-	public CharacterTest(){
+	public Character(){
 		
 	}
 
