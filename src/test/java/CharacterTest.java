@@ -1,23 +1,21 @@
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class CharacterTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testFail() {
+		fail("Not yet implemented.");
+	}
+
+	public void testNewCharacter(){
 	}
 	
-	public void newCharacter(){
-		//testa konstruktorn - ta in liv och hastighet attribut 100hp och 100 speed
-	}
-	
-	public void getLifeTest(){
+	public void testGetLife(){
 		// Testa karaktärens HP - heltal
 	}
 	
-	public void getSpeedTest(){
+	public void testGetSpeedTest(){
 		// Testa karaktärens Hastighet - flyttal
 	}
 
