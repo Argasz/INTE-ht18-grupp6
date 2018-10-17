@@ -10,11 +10,15 @@ public class Character {
 		
 	}
         
+
         public int getLife(){
             return life;
         }
-        public float getSpeed()
-                return speed;
+
+	public float getSpeed(){
+		return speed;
+	}
+
         
 
 }
