@@ -9,6 +9,7 @@ public class Character {
 		this.life = hp;
 		this.speed = speed;
 	}
+
         
 
         public int getLife(){
@@ -18,6 +19,7 @@ public class Character {
 	public float getSpeed(){
 		return speed;
 	}
+
 
         
 
