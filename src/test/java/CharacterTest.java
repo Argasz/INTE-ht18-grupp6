@@ -17,6 +17,13 @@ public class CharacterTest {
 	
 	public void testGetSpeedTest(){
 		// Testa karaktärens Hastighet - flyttal
+                Character player = New Character(konstruktor);
+                float speed = player.getSpeed();
+                assertEquals(Speed,1);     
+                        
+                        
+                        
+                
 	}
 
 }
