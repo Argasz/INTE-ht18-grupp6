@@ -2,6 +2,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class CharacterTest {
+	
+	public CharacterTest(){
+		
+	}
 
 	@Test
 	public void testFail() {
@@ -9,6 +13,7 @@ public class CharacterTest {
 	}
 
 	public void testNewCharacter(){
+		Character c1 = new Character(20, 45);
 	}
         
 	@Test
