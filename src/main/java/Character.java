@@ -2,12 +2,12 @@ public class Character {
 	 
 	// Sätter upp eclipse med Github - TEST
 	
-	private String Name;
-        private int life;
-        private float speed;
+    private int life;
+    private float speed;
 	
-	public Character(){
-		
+	public Character(int hp, float speed){
+		this.life = hp;
+		this.speed = speed;
 	}
         
 
