@@ -9,8 +9,8 @@ public class Character {
 	public Character(){
 		
 	}
-        public float getSpeed()
-                return speed;
+        //public float getSpeed()
+                //return speed;
         
 
 }
