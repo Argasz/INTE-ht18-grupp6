@@ -13,6 +13,7 @@ public class CharacterTest {
         
 	@Test
 	public void testGetLife(){
+            // Testa karaktärens HP - heltal
             Character player = new Character(konstruktor);
 		int life = player.getLife();
                 assertEquals(life,1);
