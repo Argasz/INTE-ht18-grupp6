@@ -20,7 +20,7 @@ public class CharacterTest {
 	public void testGetLife(){
 
             // Testa karakt�rens HP - heltal
-            Character player = new Character(konstruktor);
+            Character player = new Character(1,10);
 		int life = player.getLife();
                 assertEquals(life,1);
 
@@ -29,10 +29,10 @@ public class CharacterTest {
         
 	@Test
 	public void testGetSpeedTest(){
-		// Testa karaktärens Hastighet - flyttal
-              //  Character player = New Character(konstruktor);
-              //  float speed = player.getSpeed();
-              //  assertEquals(Speed,1);
+	//Testa karaktärens Hastighet - flyttal
+            Character player = new Character(10,1);
+            float speed = player.getSpeed();
+            assertEquals(speed,1f);
                         
                         
                         
