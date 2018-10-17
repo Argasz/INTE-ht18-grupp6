@@ -19,7 +19,7 @@ public class CharacterTest {
 	}
         
         
-	
+	@Test
 	public void testGetSpeedTest(){
 		// Testa karaktärens Hastighet - flyttal
                 Character player = New Character(konstruktor);
