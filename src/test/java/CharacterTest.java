@@ -13,13 +13,14 @@ public class CharacterTest {
         
 	@Test
 	public void testGetLife(){
+            // Testa karaktärens HP - heltal
             Character player = new Character(konstruktor);
 		int life = player.getLife();
                 assertEquals(life,1);
 	}
         
         
-	
+	@Test
 	public void testGetSpeedTest(){
 		// Testa karaktÃ¤rens Hastighet - flyttal
                 Character player = New Character(konstruktor);
