@@ -18,7 +18,6 @@ public class Creature {
 		this.speed = speed;
 		this.level = level;
 	}
-        
 
     public int getLife(){
     	return life;}
@@ -35,6 +34,13 @@ public class Creature {
 		if(level == 10)
 			return;
 		level++;
+	}
+	
+	public void damageTaken(){
+		if(life == 0){
+			throw new IllegalStateException("Creature is already dead, can't have less than 0 life");
+		}
+		this.life = life - 10;
 	}
 
 }
