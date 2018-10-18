@@ -2,17 +2,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class CharacterTest {
-	
-	public CharacterTest(){
-		
-	}
 
-	@Test
-	public void testFail() {
-		fail("Not yet implemented.");
-	}
 
-	public void testNewCharacter(){
+	public void testNewValidCharacter(){
 		Character c1 = new Character(20, 45);
 	}
         
