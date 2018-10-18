@@ -5,7 +5,7 @@ public class Creature {
     private int life;
     private double speed;
     private int level;
-    private String characterName;
+    private final String characterName;
 	
 	public Creature(String characterName, int hp, double speed, int level){
 		this.characterName = characterName;
