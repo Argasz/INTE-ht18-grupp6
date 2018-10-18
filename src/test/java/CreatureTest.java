@@ -6,6 +6,14 @@ public class CreatureTest {
 	@Test
 	public void testNewCreature(){
 		Creature player = new Creature("JohnDoe", 100, 1.0, 1); // Testa konstruktorn
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Creature playerNoName = new Creature("", 100, 1.0, 1);
+		});
+		
+		assertThrows(IllegalArgumentException.class, () -> {
+			Creature playerNoName = new Creature("aaaaabbbbbcccccddddde", 100, 1.0, 1);
+		});
 	}
         
 	@Test
