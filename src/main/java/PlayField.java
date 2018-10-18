@@ -1,10 +1,12 @@
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class PlayField {
     private int height, width;
     private Character[][] fieldArray;
-    private Map<Character, Point[]> positionMap;
+    private Map<Character, ArrayList<Point>> positionMap;
 
     static final int MAX_WIDTH = 200;
     static final int MAX_HEIGHT = 200;
@@ -28,6 +30,21 @@ public class PlayField {
         this.height = height;
         this.width = width;
         fieldArray = new Character[width][height];
+        positionMap = new HashMap<>();
+    }
+
+    private void putInMap(Character c, Point p){
+        if(positionMap.containsKey(c)){
+            positionMap.get(c).add(p);
+        }else{
+            ArrayList<Point> putList = new ArrayList<>();
+            putList.add(p);
+            positionMap.put(c, putList);
+        }
+    }
+
+    private void removeFromMap(Character c, Point p){
+        positionMap.get(c).remove(p);
     }
 
     public Character[][] getFieldArray(){
@@ -38,6 +55,7 @@ public class PlayField {
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 fieldArray[i][j] = 'a';
+                putInMap('a', new Point(i, j));
 
             }
         }
@@ -58,7 +76,10 @@ public class PlayField {
         }else if( y < 0 || y >=height){
             throw new IllegalArgumentException("Index out of bounds for argument y.");
         }
+        Point p = new Point(x, y);
+        removeFromMap(fieldArray[x][y], p);
         fieldArray[x][y] = c;
+        putInMap(c, p);
     }
 
     public int getHeight() {
@@ -69,7 +90,7 @@ public class PlayField {
         return width;
     }
 
-    public Point[] findChars(Character c){
+    public ArrayList<Point> findChars(Character c){
         return positionMap.get(c);
     }
 }

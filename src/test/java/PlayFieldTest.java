@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -192,9 +193,9 @@ class PlayFieldTest {
         Point p1 = new Point(5, 5);
         pf.setCharAt(5,  6, c);
         Point p2 = new Point(5, 6);
-        Point[] result  = pf.findChars(c);
-        assertEquals(p1, result[0]);
-        assertEquals(p2, result[1]);
+        ArrayList<Point> result  = pf.findChars(c);
+        assertEquals(p1, result.get(0));
+        assertEquals(p2, result.get(1));
 
     }
 
