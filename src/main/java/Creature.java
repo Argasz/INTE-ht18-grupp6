@@ -3,11 +3,11 @@ public class Creature {
 	// Sätter upp eclipse med Github - TEST
 	
     private int life;
-    private float speed;
+    private double speed;
     private int level;
     private String characterName;
 	
-	public Creature(String characterName, int hp, float speed, int level){
+	public Creature(String characterName, int hp, double speed, int level){
 		this.characterName = characterName;
 		this.life = hp;
 		this.speed = speed;
@@ -18,7 +18,7 @@ public class Creature {
     public int getLife(){
     	return life;}
 
-	public float getSpeed(){
+	public double getSpeed(){
 		return speed;
 	}
 	
