@@ -2,18 +2,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class CharacterTest {
-	
-	public CharacterTest(){
-		
-	}
-
-	@Test
-	public void testFail() {
-		fail("Not yet implemented.");
-	}
 
 	public void testNewCharacter(){
-		Character c1 = new Character(20, 45);
+		Character character = new Character("JohnDoe", 100, 100, 1); // Testa konstruktorn
 	}
         
 	@Test
@@ -38,6 +29,16 @@ public class CharacterTest {
 		 * karaktären börjar på level 1 och attributen ska inte gå att minska 
 		 * Max level är 10
 		 */
+		
+		
+	}
+	
+	@Test
+	public void testGainLevel(){
+		// Karaktären kan bara gå upp 1 lvl i taget
+		Character player = New Character(JohnDoe, 100, 1, 1); // namn, life, speed & level
+		assertEquals(player.gainLevel(), 2);
+		
 	}
 
 }
