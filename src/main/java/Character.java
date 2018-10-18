@@ -6,7 +6,7 @@ public class Character {
     private float speed;
 	
 	public Character(int hp, float speed){
-		this.life = hp;
+		life = hp;
 		this.speed = speed;
 	}
 
