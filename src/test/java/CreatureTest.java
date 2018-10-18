@@ -47,7 +47,7 @@ public class CreatureTest {
 	@Test
 	public void testGainLevel() {
 		// Karaktären kan bara gå upp 1 lvl i taget
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1); // namn, life, speed & level
+		Creature player = new Creature("JohnDoe", 100, 1.0, 1);
 
 		assertEquals(1, player.getLevel());
 		player.gainLevel();
