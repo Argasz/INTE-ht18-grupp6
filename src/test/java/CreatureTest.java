@@ -1,7 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class CharacterTest {
+public class CreatureTest {
 
 	public void testNewCharacter(){
 		Character character = new Character("JohnDoe", 100, 1.0, 1); // Testa konstruktorn

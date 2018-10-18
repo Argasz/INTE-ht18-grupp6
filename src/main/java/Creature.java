@@ -1,4 +1,4 @@
-public class Character {
+public class Creature {
 	 
 	// Sätter upp eclipse med Github - TEST
 	
@@ -7,7 +7,7 @@ public class Character {
     private int level;
     private String characterName;
 	
-	public Character(String characterName, int hp, float speed, int level){
+	public Creature(String characterName, int hp, float speed, int level){
 		this.characterName = characterName;
 		this.life = hp;
 		this.speed = speed;
