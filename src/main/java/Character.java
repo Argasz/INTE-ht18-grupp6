@@ -5,10 +5,13 @@ public class Character {
     private int life;
     private float speed;
     private int level;
+    private String characterName;
 	
-	public Character(int hp, float speed){
+	public Character(String characterName, int hp, float speed, int level){
+		this.characterName = characterName;
 		this.life = hp;
 		this.speed = speed;
+		this.level = level;
 	}
         
 
@@ -24,6 +27,8 @@ public class Character {
 	}
 	
 	public void gainLevel(){
+		if(level == 10)
+			return;
 		level++;
 	}
 
