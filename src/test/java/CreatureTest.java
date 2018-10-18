@@ -1,18 +1,18 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class CharacterTest {
+public class CreatureTest {
 
 
 	public void testNewValidCharacter(){
-		Character c1 = new Character(20, 45);
+		Creature c1 = new Creature(20, 45);
 	}
         
 	@Test
 	public void testGetLife(){
 
             // Testa karakt�rens HP - heltal
-            Character player = new Character(1,10);
+            Creature player = new Creature(1,10);
 		int life = player.getLife();
                 assertEquals(life,1);
 
@@ -22,7 +22,7 @@ public class CharacterTest {
 	@Test
 	public void testGetSpeedTest(){
 	//Testa karaktärens Hastighet - flyttal
-            Character player = new Character(10,1);
+            Creature player = new Creature(10,1);
             float speed = player.getSpeed();
             assertEquals(speed,1f);
                         

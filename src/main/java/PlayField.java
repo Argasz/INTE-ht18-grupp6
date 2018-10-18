@@ -29,5 +29,22 @@ public class PlayField {
         return fieldArray;
     }
 
+    public void generateField(){ // Mer komplicerad implementation senare
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                fieldArray[i][j] = 'a';
+            }
+        }
+    }
+
+    public Character getCharAt(int x, int y){
+        if(x < 1 || x >= width){
+            throw new IllegalArgumentException("Index out of bounds for argument x.");
+        }else if( y < 1 || y >=height){
+            throw new IllegalArgumentException("Index out of bounds for argument y.");
+        }
+        return fieldArray[x][y];
+    }
+
 
 }

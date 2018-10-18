@@ -1,11 +1,11 @@
-public class Character {
+public class Creature {
 	 
 	// Sätter upp eclipse med Github - TEST
 	
     private int life;
     private float speed;
 	
-	public Character(int hp, float speed){
+	public Creature(int hp, float speed){
 		this.life = hp;
 		this.speed = speed;
 	}
