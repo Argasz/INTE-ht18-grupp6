@@ -1,8 +1,13 @@
+import java.awt.*;
+import java.util.Map;
+
 public class PlayField {
-    int height, width;
-    Character[][] fieldArray;
-    public static final int MAX_WIDTH = 200;
-    public static final int MAX_HEIGHT = 200;
+    private int height, width;
+    private Character[][] fieldArray;
+    private Map<Character, Point[]> positionMap;
+
+    static final int MAX_WIDTH = 200;
+    static final int MAX_HEIGHT = 200;
 
 
     public PlayField(int height, int width){
@@ -33,18 +38,38 @@ public class PlayField {
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
                 fieldArray[i][j] = 'a';
+
             }
         }
     }
 
     public Character getCharAt(int x, int y){
-        if(x < 1 || x >= width){
+        if(x < 0 || x >= width){
             throw new IllegalArgumentException("Index out of bounds for argument x.");
-        }else if( y < 1 || y >=height){
+        }else if( y < 0 || y >=height){
             throw new IllegalArgumentException("Index out of bounds for argument y.");
         }
         return fieldArray[x][y];
     }
 
+    public void setCharAt(int x, int y, Character c){
+        if(x < 0 || x >= width){
+            throw new IllegalArgumentException("Index out of bounds for argument x.");
+        }else if( y < 0 || y >=height){
+            throw new IllegalArgumentException("Index out of bounds for argument y.");
+        }
+        fieldArray[x][y] = c;
+    }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public Point[] findChars(Character c){
+        return positionMap.get(c);
+    }
 }

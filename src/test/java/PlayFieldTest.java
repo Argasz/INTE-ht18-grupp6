@@ -2,6 +2,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayFieldTest {
@@ -65,7 +67,7 @@ class PlayFieldTest {
         pf.generateField();
         Character[][] field = pf.getFieldArray();
         for(int i = 0; i < field.length; i++){
-            for(int j = 0; j < pf.height; j++){
+            for(int j = 0; j < pf.getHeight(); j++){
                 assertNotEquals(field[i][j], ('\u0000'));
             }
         }
@@ -117,6 +119,83 @@ class PlayFieldTest {
             pf.getCharAt(5, 10);
         });
         assertEquals("Index out of bounds for argument y.", e.getMessage());
+    }
+
+    @Test
+    public void testValidSetCharAt(){
+        pf = new PlayField(10, 10);
+        pf.generateField();
+        Character c = 'b';
+        pf.setCharAt(8, 8, c);
+        assertEquals(c, pf.getCharAt(8, 8));
+    }
+
+    @Test
+    public void testSetCharAtNegativeX(){
+        pf = new PlayField(10, 10);
+        pf.generateField();
+        Exception e = assertThrows(IllegalArgumentException.class, ()-> {
+            pf.setCharAt(-1, 2, 'b');
+        });
+
+        assertEquals(e.getMessage(), "Index out of bounds for argument x.");
+    }
+
+    @Test
+    public void testSetCharAtNegativeY(){
+        pf = new PlayField(10, 10);
+        pf.generateField();
+
+        Exception e = assertThrows(IllegalArgumentException.class, ()-> {
+            pf.setCharAt(2, -1, 'b');
+        });
+
+        assertEquals(e.getMessage(), "Index out of bounds for argument y.");
+    }
+
+    @Test
+    public void testSetCharacterXAboveMax(){
+        pf = new PlayField(10, 10);
+        pf.generateField();
+        Exception e = assertThrows(IllegalArgumentException.class, ()->{
+           pf.setCharAt(11, 0, 'b');
+        });
+        assertEquals(e.getMessage(), "Index out of bounds for argument x.");
+    }
+
+    @Test
+    public void testSetCharacterYAboveMax(){
+        pf = new PlayField(10, 10);
+        pf.generateField();
+        Exception e = assertThrows(IllegalArgumentException.class, ()->{
+            pf.setCharAt(0, 11, 'b');
+        });
+        assertEquals(e.getMessage(), "Index out of bounds for argument y.");
+    }
+
+    @Test
+    public void testFindPos(){
+        pf = new PlayField(10 , 10);
+        pf.generateField();
+        Character c = 'b';
+        pf.setCharAt(5, 5, c);
+        assertEquals(c, pf.getCharAt(5, 5));
+
+    }
+
+    @Test
+    public void testFindValidChars(){
+        pf = new PlayField(10, 10);
+        pf.generateField();
+        Character c = 'b';
+        pf.setCharAt(5,5, c);
+        Point p1 = new Point(5, 5);
+        pf.setCharAt(5,  6, c);
+        Point p2 = new Point(5, 6);
+        Point[] result  = pf.findChars(c);
+        assertEquals(p1, result[0]);
+        assertEquals(p2, result[1]);
+
     }
 
 }
