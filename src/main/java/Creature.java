@@ -1,4 +1,4 @@
-public class Creature {
+public abstract class Creature {
 	 
 	// Sätter upp eclipse med Github - TEST
 	

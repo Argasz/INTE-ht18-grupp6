@@ -5,31 +5,31 @@ public class CreatureTest {
 
 	@Test
 	public void testNewCreature() {
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1); // Testa konstruktorn
-		Creature playerNameLetter = new Creature("aaaaabbbbbccccc", 100, 1.0, 1);
-		Creature playerNameInt = new Creature("111112222233333", 100, 1.0, 1);
-		Creature playerNameLetterInt = new Creature("aaaaabbbbb1111122222", 100, 1.0, 1);
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1); // Testa konstruktorn
+		Creature playerNameLetter = new PlayerCharacter("aaaaabbbbbccccc", 100, 1.0, 1);
+		Creature playerNameInt = new PlayerCharacter("111112222233333", 100, 1.0, 1);
+		Creature playerNameLetterInt = new PlayerCharacter("aaaaabbbbb1111122222", 100, 1.0, 1);
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			Creature playerNoName = new Creature("", 100, 1.0, 1);
+			Creature playerNoName = new PlayerCharacter("", 100, 1.0, 1);
 		});
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			Creature playerNoName = new Creature("aaaaabbbbbcccccddddde", 100, 1.0, 1);
+			Creature playerNoName = new PlayerCharacter("aaaaabbbbbcccccddddde", 100, 1.0, 1);
 		});
 	}
 
 	@Test
 	public void testGetLife() {
 		// Testa karakt�rens HP - heltal
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1);
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		assertEquals(100, player.getLife());
 	}
 
 	@Test
 	public void testGetSpeed() {
 		// Testa karaktärens Hastighet - flyttal
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1);
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		assertEquals(1.0, player.getSpeed());
 	}
 
@@ -39,7 +39,7 @@ public class CreatureTest {
 		 * Testa karaktärens level karaktären börjar på level 1 och attributen
 		 * ska inte gå att minska Max level är 10
 		 */
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1);
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		assertEquals(1, player.getLevel());
 
 	}
@@ -47,7 +47,7 @@ public class CreatureTest {
 	@Test
 	public void testGainLevel() {
 		// Karaktären kan bara gå upp 1 lvl i taget
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1);
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 
 		assertEquals(1, player.getLevel());
 		player.gainLevel();
@@ -68,7 +68,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testDamageTaken(){
-		Creature player = new Creature("JohnDoe", 100, 1.0, 1);
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
 		player.damageTaken();
 		player.damageTaken();
