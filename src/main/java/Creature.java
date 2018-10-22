@@ -2,9 +2,8 @@ public abstract class Creature {
 	 
 	// Sätter upp eclipse med Github - TEST
 	
-    private int life;
+    private int life, level;
     private double speed;
-    private int level;
     private final String characterName;
 	
 	public Creature(String characterName, int hp, double speed, int level){
@@ -18,6 +17,8 @@ public abstract class Creature {
 		this.speed = speed;
 		this.level = level;
 	}
+	
+	public abstract int damageDealt();
 
     public int getLife(){
     	return life;}

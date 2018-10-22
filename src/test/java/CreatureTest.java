@@ -85,5 +85,17 @@ public class CreatureTest {
 		});
 		
 	}
+	
+	@Test
+	public void testPlayerCharacterDmgDealt(){
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		assertEquals(10, player.damageDealt());
+	}
+	
+	@Test
+	public void testMonsterDmgDealt(){
+		Creature monster = new PlayerCharacter("Monster", 100, 1.0, 1);
+		assertEquals(5, monster.damageDealt());
+	}
 
 }
