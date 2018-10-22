@@ -4,12 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayField {
+
     private int height, width;
     private Character[][] fieldArray;
     private Map<Character, ArrayList<Point>> positionMap;
 
     static final int MAX_WIDTH = 200;
     static final int MAX_HEIGHT = 200;
+    static final Character[] TILES = {'a', '*', '.'};
 
 
     public PlayField(int height, int width){
@@ -54,9 +56,22 @@ public class PlayField {
     public void generateField(){ // Mer komplicerad implementation senare
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                fieldArray[i][j] = 'a';
-                putInMap('a', new Point(i, j));
+                if (i == 0 || j == 0 || i == fieldArray.length-1  || j == fieldArray[0].length -1 ){
+                    fieldArray[i][j] = '*';
+                    putInMap('*', new Point(i, j));
+                }else{
+                    fieldArray[i][j] = '.';
+                    putInMap('.', new Point(i, j));
+                }
+            }
+        }
+        System.out.print(this);
+    }
 
+    private void generateWallsOnly(){
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                fieldArray[i][j] = '*';
             }
         }
     }
@@ -92,5 +107,18 @@ public class PlayField {
 
     public ArrayList<Point> findChars(Character c){
         return positionMap.get(c);
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int y = 0; y < height; y++){
+            for(int x = 0; x < width; x++){
+                sb.append(fieldArray[x][y]);
+            }
+            sb.append('\n');
+        }
+
+        return sb.toString();
     }
 }

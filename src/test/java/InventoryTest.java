@@ -56,26 +56,26 @@ public class InventoryTest {
     }
 
     public void testPrintInventory(Item[] bag) {
-    Inventory inv = new Inventory();
-    Item j= new Item("a", 1, 2);
-    inv.AddItemToInventory(j);
-    String print = inv.printInventory(inv.getBag());
-    assertTrue(print.equals("sword, bomb, gun,"));
+        Inventory inv = new Inventory();
+        Item j= new Item("a", 1, 2);
+        inv.AddItemToInventory(j);
+        String print = inv.printInventory(inv.getBag());
+        assertTrue(print.equals("sword, bomb, gun,"));
     }
-    
-//before this test, create an item
+
+    //before this test, create an item
     public void testAddItemToInventory() {
-    Inventory inv = new Inventory();
-    Item j= new Item("a", 1 ,2);
-    inv.AddItemToInventory(j);
-    assertTrue(inv.bagContains(j));
+        Inventory inv = new Inventory();
+        Item j= new Item("a", 1 ,2);
+        inv.AddItemToInventory(j);
+        assertTrue(inv.bagContains(j));
     }
 
     public void testRemoveItemFromInventry() {
-    Inventory inv = new Inventory();
-    Item j= new Item("a", 1, 2);
-    inv.removeItemFromInventory(j);
-    assertTrue(!inv.bagContains(j));
+        Inventory inv = new Inventory();
+        Item j= new Item("a", 1, 2);
+        inv.removeItemFromInventory(j);
+        assertTrue(!inv.bagContains(j));
     }
 
     public void testRemoveAllItemsFromInventry() {

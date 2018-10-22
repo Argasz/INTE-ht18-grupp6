@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,6 +75,50 @@ public class PlayFieldTest {
                 assertNotEquals(field[i][j], ('\u0000'));
             }
         }
+    }
+
+    @Test
+    public void testGenerate(){
+        pf = new PlayField(50, 50);
+        pf.generateField();
+        assertTrue(traverse(pf));
+    }
+
+    private Set<Point> flood(Character[][] field, Set<Point> visited, Point pos){
+        if(field[pos.x][pos.y] != '.'){
+            return visited;
+        }
+        field[pos.x][pos.y] = 'v';
+        visited.add(pos);
+        if(pos.y+1 < field[0].length){ //SOUTH
+            visited.addAll(flood(field, visited, new Point(pos.x, pos.y+1)));
+        }
+        if(pos.x+1 < field.length){ //EAST
+            visited.addAll(flood(field, visited, new Point(pos.x+1, pos.y)));
+        }
+        if(pos.x-1 >= 0) { //WEST
+            visited.addAll(flood(field, visited, new Point(pos.x-1, pos.y)));
+        }
+        if(pos.y - 1 >= 0){ //NORTH
+            visited.addAll(flood(field, visited, new Point(pos.x, pos.y-1)));
+        }
+
+        return visited;
+    }
+
+    private boolean traverse(PlayField field){
+        Point start = field.findChars('.').get(0);
+
+        Set<Point> vis = flood(pf.getFieldArray(), new HashSet<Point>(), start);
+
+        boolean found = true;
+        for(Point p: field.findChars('.')){
+            if(!vis.contains(p)){
+                found = false;
+            }
+        }
+
+        return found;
     }
 
     @Test
