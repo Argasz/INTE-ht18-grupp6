@@ -68,13 +68,6 @@ public class PlayField {
         System.out.print(this);
     }
 
-    private void generateWallsOnly(){
-        for(int i = 0; i < width; i++){
-            for(int j = 0; j < height; j++){
-                fieldArray[i][j] = '*';
-            }
-        }
-    }
 
     public Character getCharAt(int x, int y){
         if(x < 0 || x >= width){
