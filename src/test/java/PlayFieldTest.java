@@ -7,13 +7,14 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PlayFieldTest {
+public class PlayFieldTest {
     private PlayField pf;
-
 
     @Test
     public void testNewFieldValid(){
         pf = new PlayField(5, 5);
+        assertEquals(5, pf.getHeight());
+        assertEquals(5, pf.getWidth());
     }
 
     @Test
@@ -54,12 +55,12 @@ class PlayFieldTest {
 
     @Test
     public void testNewValidFieldArraySize(){
-        int length = 10;
         int width = 10;
-        pf = new PlayField(length, width);
+        int height = 10;
+        pf = new PlayField(width, height);
         Character[][] field = pf.getFieldArray();
-        assertEquals(length, field.length);
-        assertEquals(width, field[1].length);
+        assertEquals(height, field[0].length);
+        assertEquals(width, field.length);
     }
 
     @Test
