@@ -6,16 +6,27 @@ public class PlayerCharacter extends Creature {
 		super(characterName, hp, speed, level);
 	}
 	
-	private void buffStamina(){
-		
+	public int getStrength(){
+		return strength;
 	}
 	
-	private void buffStrength(){
-		
+	public void buffStamina(){
+		stamina++;
+		increaseLife();
+	}
+	
+	public void buffStrength(){
+		strength++;
+	}
+	
+	private void increaseLife(){
+		setLife(getLife() + (100 * stamina)/10);
 	}
 	
 	public int damageDealt(){
-		return 10;
+		if(strength == 0)
+			return 5;
+		return 5 * strength;
 	}
 
 }

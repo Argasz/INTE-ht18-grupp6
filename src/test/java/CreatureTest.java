@@ -32,6 +32,15 @@ public class CreatureTest {
 		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		assertEquals(1.0, player.getSpeed());
 	}
+	
+	@Test
+	public void testCreatureSetLife(){
+		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		Creature monster = new Monster("Monster", 100, 1.0, 1);
+		
+		player.setLife(150);
+		monster.setLife(150);
+	}
 
 	@Test
 	public void testGetLevel() {
@@ -42,6 +51,13 @@ public class CreatureTest {
 		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		assertEquals(1, player.getLevel());
 
+	}
+	
+	@Test
+	public void testGetStrength(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		
+		assertEquals(0, player.getStrength());
 	}
 
 	@Test
@@ -70,32 +86,62 @@ public class CreatureTest {
 	public void testDamageTaken(){
 		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
-		player.damageTaken();
-		player.damageTaken();
+		player.damageTaken(10);
+		player.damageTaken(10);
 		assertEquals(80, player.getLife());
 		
 		for (int i = 8; i != 0; i--) {
-			player.damageTaken();
+			player.damageTaken(10);
 		}
 		
 		assertEquals(0, player.getLife());
 		
 		assertThrows(IllegalStateException.class, () -> {
-			player.damageTaken();
+			player.damageTaken(10);
 		});
 		
 	}
 	
 	@Test
 	public void testPlayerCharacterDmgDealt(){
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		assertEquals(5, player.damageDealt());
+		
+		player.buffStrength();
 		assertEquals(10, player.damageDealt());
 	}
 	
 	@Test
 	public void testMonsterDmgDealt(){
-		Creature monster = new PlayerCharacter("Monster", 100, 1.0, 1);
-		assertEquals(5, monster.damageDealt());
+		Creature monster = new Monster("Monster", 100, 1.0, 1);
+		assertEquals(10, monster.damageDealt());
+	}
+	
+	@Test
+	public void testBuffStamina(){
+		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1.0, 1);
+		player.buffStamina();
+		
+		assertEquals(110, player.getLife());
+		assertNotEquals(120, player.getLife());
+	}
+	
+	@Test
+	public void testBuffStrength(){
+		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1.0, 1);
+		player.buffStrength();
+		
+		assertEquals(2, player.getStrength());
+		
+	}
+	
+	@Test
+	public void testPlayerLifeAfterBuff(){
+		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1.0, 1);
+		for(int i = 0; i < 5; i++)
+			player.buffStamina();
+		
+		assertEquals(150, player.getLife());
 	}
 
 }

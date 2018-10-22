@@ -37,11 +37,15 @@ public abstract class Creature {
 		level++;
 	}
 	
-	public void damageTaken(){
-		if(life == 0){
+	public void setLife(int newLife){
+		this.life = newLife;
+	}
+	
+	public void damageTaken(int damage){
+		if(life <= 0){
 			throw new IllegalStateException("Creature is already dead, can't have less than 0 life");
 		}
-		this.life = life - 10;
+		life = life - damage;
 	}
 
 }

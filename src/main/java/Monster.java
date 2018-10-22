@@ -6,7 +6,7 @@ public class Monster extends Creature {
 	}
 	
 	public int damageDealt(){
-		return 5;
+		return 10;
 	}
 
 }

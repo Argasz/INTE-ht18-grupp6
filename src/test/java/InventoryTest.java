@@ -113,6 +113,7 @@ public class InventoryTest {
     /**
      * Test of getBag method, of class Inventory.
      */
+    /*
     @Test
     public void testGetBag() {
         System.out.println("getBag");
@@ -123,6 +124,7 @@ public class InventoryTest {
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
     }
+    */
 
     /**
      * Test of removeItemFromInventory method, of class Inventory.
