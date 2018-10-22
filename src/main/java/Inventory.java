@@ -35,13 +35,13 @@ public void AddItemToInventory(Item j) {
         }
     }
 public void removeItemFromInventory(Item j) {
-        int i;
+        /*int i;
         Item[] bag = new Item[Inventory.MAX_ITEMS_IN_BAG];
         for (i = 0; i <= MAX_ITEMS_IN_BAG; i++) {
             if (bag[i] == null)
             
             
-                }   
+                }   */
       
 }
 
@@ -49,7 +49,7 @@ public String printInventory(Item[] bag) {
         String content = "";
         for (Item i : bag) {
             if (i != null) {
-                content += (i.toString + ", ");
+                content += (i.toString() + ", ");
             }
         }
 return content;
