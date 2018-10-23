@@ -19,6 +19,10 @@ public abstract class Creature {
 	}
 	
 	public abstract int damageDealt();
+	
+	public String getName(){
+		return characterName;
+	}
 
     public int getLife(){
     	return life;}

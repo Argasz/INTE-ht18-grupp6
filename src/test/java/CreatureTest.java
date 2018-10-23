@@ -22,6 +22,14 @@ public class CreatureTest {
 		assertEquals(1, ((PlayerCharacter)player).getStrength());
 		assertEquals(1, ((PlayerCharacter)player).getLevel());
 		assertEquals(100, ((PlayerCharacter)player).getLife());
+		assertEquals(1.0, player.getSpeed());
+	}
+	
+	@Test
+	public void testGetName(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		
+		assertEquals("JohnDoe", player.getName());
 	}
 
 	@Test

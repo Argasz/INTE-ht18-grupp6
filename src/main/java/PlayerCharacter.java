@@ -2,8 +2,8 @@
 public class PlayerCharacter extends Creature {
 	private int strength, stamina;
 
-	public PlayerCharacter(String characterName, int hp, double speed, int level) {
-		super(characterName, hp, speed, level);
+	public PlayerCharacter(String characterName, int life, double speed, int level) {
+		super(characterName, life, speed, level);
 		this.strength = 1;
 		this.stamina = 1;
 	}
