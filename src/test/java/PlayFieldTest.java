@@ -85,7 +85,7 @@ public class PlayFieldTest {
     }
 
     private Set<Point> flood(Character[][] field, Set<Point> visited, Point pos){
-        if(field[pos.x][pos.y] != '.'){
+        if(field[pos.x][pos.y] != TILES.FLOOR.getSymbol()){
             return visited;
         }
         field[pos.x][pos.y] = 'v';
@@ -107,12 +107,12 @@ public class PlayFieldTest {
     }
 
     private boolean traverse(PlayField field){
-        Point start = field.findChars('.').get(0);
+        Point start = field.findChars(TILES.FLOOR.getSymbol()).get(0);
 
         Set<Point> vis = flood(pf.getFieldArray(), new HashSet<Point>(), start);
 
         boolean found = true;
-        for(Point p: field.findChars('.')){
+        for(Point p: field.findChars(TILES.FLOOR.getSymbol())){
             if(!vis.contains(p)){
                 found = false;
             }
@@ -122,10 +122,16 @@ public class PlayFieldTest {
     }
 
     @Test
+    public void temp(){
+        pf = new PlayField(30, 30);
+        pf.generateBSP();
+    }
+
+    @Test
     public void testValidGetCharAt(){
         pf = new PlayField(10, 10);
         pf.generateField();
-        Character c = '*';
+        Character c = TILES.WALL.getSymbol();
         assertEquals(c, pf.getCharAt(9, 9)); //TODO: Skriv om?
     }
 
