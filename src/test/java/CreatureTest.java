@@ -17,6 +17,11 @@ public class CreatureTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Creature playerNoName = new PlayerCharacter("aaaaabbbbbcccccddddde", 100, 1.0, 1);
 		});
+		
+		assertEquals(1, ((PlayerCharacter)player).getStamina());
+		assertEquals(1, ((PlayerCharacter)player).getStrength());
+		assertEquals(1, ((PlayerCharacter)player).getLevel());
+		assertEquals(100, ((PlayerCharacter)player).getLife());
 	}
 
 	@Test
@@ -58,6 +63,34 @@ public class CreatureTest {
 		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
 		assertEquals(0, player.getStrength());
+	}
+	
+	@Test
+	public void testGetStamina(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		
+		assertEquals(0, player.getStamina());
+		assertEquals(100, player.getLife());
+		
+		player.increaseLevel();
+		
+		assertEquals(1, player.getStamina());
+	}
+	
+	@Test
+	public void testSetLife(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		
+		player.setLife(110);
+		assertEquals(110,player.getLife());
+	}
+	
+	@Test
+	public void testSetLevel(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		
+		player.gainLevel();
+		assertEquals(5, player.getLevel());
 	}
 
 	@Test
@@ -128,7 +161,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testBuffStrength(){
-		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1.0, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		player.buffStrength();
 		
 		assertEquals(2, player.getStrength());
@@ -137,11 +170,22 @@ public class CreatureTest {
 	
 	@Test
 	public void testPlayerLifeAfterBuff(){
-		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1.0, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		for(int i = 0; i < 5; i++)
 			player.buffStamina();
 		
 		assertEquals(150, player.getLife());
+	}
+	
+	@Test
+	public void testPlayerStatsAfterLvlUp(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		 
+		player.increaseLevel();
+		assertEquals(2, player.getLevel());
+		
+		
+		
 	}
 
 }
