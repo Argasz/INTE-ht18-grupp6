@@ -1,11 +1,13 @@
 
 public class PlayerCharacter extends Creature {
-	private int strength, stamina;
+	private int strength, stamina, agility, dodgeRating;
 
 	public PlayerCharacter(String characterName, int life, double speed, int level) {
 		super(characterName, life, speed, level);
 		this.strength = 1;
 		this.stamina = 1;
+		this.agility = 1;
+		this.dodgeRating = 1;
 	}
 	
 	public int getStrength(){
@@ -14,6 +16,14 @@ public class PlayerCharacter extends Creature {
 	
 	public int getStamina(){
 		return stamina;
+	}
+	
+	public int getAgility(){
+		return agility;
+	}
+	
+	public int getDodgeRating(){
+		return dodgeRating;
 	}
 	
 	public void buffStamina(){
@@ -25,14 +35,19 @@ public class PlayerCharacter extends Creature {
 		strength++;
 	}
 	
+	public void buffDodgeRating(){
+		dodgeRating++;
+	}
+	
 	private void increaseLife(){
-		setLife(getLife() + (100 * stamina)/10);
+		setLife(getLife() + (10 * stamina));
 	}
 	
 	public void increaseLevel(){
 		if(getLevel() == 10){
 			return;
 		}
+		setLife(100);
 		gainLevel();
 		buffStamina();
 		buffStrength();
