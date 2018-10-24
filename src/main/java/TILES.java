@@ -1,6 +1,7 @@
 public enum TILES {
     FLOOR ('.'),
-    WALL ('*');
+    WALL ('*'),
+    OUTERWALL ('#');
 
     private final Character symbol;
     private TILES(Character symbol){
