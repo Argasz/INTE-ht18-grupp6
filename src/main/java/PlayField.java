@@ -70,6 +70,8 @@ public class PlayField {
     }
 
     public void generateBSP(){
+        int numSplits = 4;
+        Random rand = new Random();
         Character[][]localMat = new Character[width][height];
         for(int y = 0; y < height; y++){
             for(int x = 0; x < width; x++){
@@ -78,81 +80,74 @@ public class PlayField {
         }
 
 
-/*        ArrayList<ArrayList<Character[][]>> tree = new ArrayList<>();
 
-        split(localMat, tree, 0);
+        Character[][][] tree = new Character[20][][];
+        tree[0] = null;
+        tree[1] = localMat;
+        split(tree, 2);
 
         StringBuilder sb = new StringBuilder();
-        int level = 0;
 
-        for(ArrayList<Character[][]> a: tree){
-            sb.append("Level:");
-            sb.append(level);
-            level++;
-            for(Character[][] c : a){
-                sb.append("[");
-                for(int y = 0; y < c[0].length; y++){
-                    for(int x = 0; x < c.length; x++ ){
-                        sb.append(c[x][y]);
-                        sb.append(", ");
-                    }
-                    sb.append("\n");
+        //TODO: Points not chars?
+
+        for(Character[][] c: tree){
+            sb.append("[");
+            for(int y = 0; y < c[0].length; y++){
+                for(int x = 0; x < c.length; x++ ){
+                    sb.append(c[x][y]);
+                    sb.append(", ");
                 }
-                sb.append("]");
                 sb.append("\n");
             }
+            sb.append("]");
             sb.append("\n");
         }
-        System.out.print(sb.toString());*/
-
-
-
-
+        sb.append("\n");
+        System.out.print(sb.toString());
     }
 
-  /*  private void split (Character[][] toSplit, ArrayList<ArrayList<Character[][]>> tree, int level){
-        if(toSplit.length < 5 || toSplit[0].length < 5){
+
+
+
+    private void split (Character[][][] tree, int index){
+        if(index == 16){
             return;
         }
-        tree.add(new ArrayList<>());
         Random rand = new Random();
         boolean horVer = rand.nextBoolean(); //true = horizontal, false = vertical
         int splitIndex;
+        System.out.println(index/2);
+        Character[][] parentMatrix = tree[index/2];
 
         if(horVer){
             Character[][] leftPartition;
             Character[][] rightPartition;
-            splitIndex = rand.nextInt(toSplit.length-4) + 2;
-            leftPartition = new Character[splitIndex+1][toSplit[0].length];
-            System.arraycopy(toSplit,0,leftPartition,0, splitIndex+1);
-            rightPartition = new Character[toSplit.length - splitIndex-1][toSplit[0].length];
-            System.arraycopy(toSplit, splitIndex+1, rightPartition,0, rightPartition.length);
-            tree.get(level).add(leftPartition);
-            tree.get(level).add(rightPartition);
-            split(leftPartition, tree, level+1);
-            split(rightPartition, tree, level+1);
+            splitIndex = rand.nextInt(parentMatrix.length-4) + 2;
+            leftPartition = new Character[splitIndex+1][parentMatrix[0].length];
+            System.arraycopy(parentMatrix,0,leftPartition,0, splitIndex+1);
+            rightPartition = new Character[parentMatrix.length - splitIndex-1][parentMatrix[0].length];
+            System.arraycopy(parentMatrix, splitIndex+1, rightPartition,0, rightPartition.length);
+            tree[index] = leftPartition;
+            tree[index + 1] = rightPartition;
+            split(tree, 2*index);
+            split(tree, 2*index+1);
         }else{
-            splitIndex = rand.nextInt(toSplit[0].length-4) + 2;
+            splitIndex = rand.nextInt(parentMatrix[0].length-4) + 2;
             Character[][] topPartition;
             Character[][] bottomPartition;
-            topPartition = new Character[toSplit.length][splitIndex];
-            bottomPartition = new Character[toSplit.length][toSplit[0].length - splitIndex - 1];
-            for(int i = 0; i < toSplit.length; i++){
-                System.arraycopy(toSplit[i], 0, topPartition[i], 0, splitIndex);
-                System.arraycopy(toSplit[i], splitIndex+1, bottomPartition[i],0, bottomPartition[0].length);
+            topPartition = new Character[parentMatrix.length][splitIndex];
+            bottomPartition = new Character[parentMatrix.length][parentMatrix[0].length - splitIndex - 1];
+            for(int i = 0; i < parentMatrix.length; i++){
+                System.arraycopy(parentMatrix[i], 0, topPartition[i], 0, splitIndex);
+                System.arraycopy(parentMatrix[i], splitIndex+1, bottomPartition[i],0, bottomPartition[0].length);
             }
-
-
-            tree.get(level).add(topPartition);
-            tree.get(level).add(bottomPartition);
-            split(topPartition, tree, level+1);
-            split(bottomPartition, tree, level+1);
+            tree[index] = topPartition;
+            tree[index + 1] = bottomPartition;
+            split(tree, 2*index);
+            split(tree, 2*index+1);
         }
 
-
-        return;
-
-    }*/
+    }
 
 
     public Character getCharAt(int x, int y){
