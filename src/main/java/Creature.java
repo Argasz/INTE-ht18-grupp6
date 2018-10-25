@@ -42,6 +42,9 @@ public abstract class Creature {
 	}
 	
 	public void setLife(int newLife){
+		if(newLife > 500){
+			throw new IllegalArgumentException("Max life is 500");
+		}
 		this.life = newLife;
 	}
 	

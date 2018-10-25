@@ -65,16 +65,6 @@ public class CreatureTest {
 	}
 	
 	@Test
-	public void testDodgeDamage(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
-		
-		player.increaseLevel();
-		player.increaseLevel();
-		player.increaseLevel();
-		
-	}
-	
-	@Test
 	public void testCreatureSetLife(){
 		Creature player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		Creature monster = new Monster("Monster", 100, 1.0, 1);
@@ -107,10 +97,8 @@ public class CreatureTest {
 		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
 		assertEquals(0, player.getStamina());
-		assertEquals(100, player.getLife());
 		
 		player.increaseLevel();
-		
 		assertEquals(1, player.getStamina());
 	}
 	
@@ -124,14 +112,10 @@ public class CreatureTest {
 		player.damageTaken(10);
 		player.increaseLevel();
 		assertEquals(110, player.getLife());
-	}
-	
-	@Test
-	public void testSetLevel(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
-		player.gainLevel();
-		assertEquals(5, player.getLevel());
+		assertThrows(IllegalArgumentException.class, () -> {
+			player.setLife(501);
+		});
 	}
 
 	@Test
@@ -176,6 +160,17 @@ public class CreatureTest {
 		assertThrows(IllegalStateException.class, () -> {
 			player.damageTaken(10);
 		});
+		
+	}
+	
+	@Test  // INTE FÄRDIG, spelaren ska kunna dodge'a dmg beroende på olika stats 
+	public void testRecieveDamage(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
+		
+		player.increaseLevel();
+		player.increaseLevel();
+		player.increaseLevel();
+		
 		
 	}
 	
