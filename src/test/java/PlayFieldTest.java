@@ -39,11 +39,34 @@ public class PlayFieldTest {
     }
 
     @Test
+    public void testIsTraversable32(){
+        pf = new PlayField(1);
+        pf.generateBSP();
+        assertTrue(traverse(pf));
+    }
+
+    @Test
     public void testIsTraversable64(){
         pf = new PlayField(2);
         pf.generateBSP();
         assertTrue(traverse(pf));
     }
+
+    @Test
+    public void testIsTraversable128(){
+        pf = new PlayField(3);
+        pf.generateBSP();
+        assertTrue(traverse(pf));
+    }
+
+    @Test
+    public void testIsTraversable256(){
+        pf = new PlayField(4);
+        pf.generateBSP();
+        assertTrue(traverse(pf));
+    }
+
+
 
 
     @Test
@@ -87,15 +110,9 @@ public class PlayFieldTest {
         }
     }*/
 
-    @Test
-    public void testGenerateIsTraversable(){
-        pf = new PlayField (2);
-        pf.generateField();
-        assertTrue(traverse(pf));
-    }
 
     private Set<Point> flood(Character[][] field, Set<Point> visited, Point pos){
-        if(field[pos.x][pos.y] != TILES.FLOOR.getSymbol()){
+        if(field[pos.x][pos.y] != TILES.FLOOR.getSymbol() || visited.contains(pos)){
             return visited;
         }
         field[pos.x][pos.y] = 'v';

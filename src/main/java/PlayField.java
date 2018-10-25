@@ -172,12 +172,10 @@ public class PlayField {
         } else if (cur.y < goal.y) {
             ret = new Point(cur.x, cur.y + 1);
             return ret;
-        } else if (cur.y > goal.y){
+        } else{
             ret = new Point(cur.x, cur.y - 1);
             return ret;
         }
-        ret = cur;
-        return ret;
     }
 
 
