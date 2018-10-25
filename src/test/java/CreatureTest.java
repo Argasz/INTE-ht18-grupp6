@@ -57,11 +57,11 @@ public class CreatureTest {
 	public void testGetDodge(){
 		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
-		assertEquals(1, player.getDodgeRating());
+		assertEquals(1, player.getEvasion());
 		
 		player.increaseLevel();
 		player.increaseLevel();
-		assertEquals(3, player.getDodgeRating());
+		assertEquals(3, player.getEvasion());
 	}
 	
 	@Test
@@ -219,11 +219,11 @@ public class CreatureTest {
 		
 		player.buffDodgeRating();
 		player.buffDodgeRating();
-		assertEquals(3, player.getDodgeRating());
+		assertEquals(3, player.getEvasion());
 		
 		player.increaseLevel();
 		player.increaseLevel();
-		assertEquals(5, player.getDodgeRating());
+		assertEquals(5, player.getEvasion());
 	}
 	
 	@Test
@@ -244,9 +244,6 @@ public class CreatureTest {
 		assertEquals(2, player.getStamina());
 		assertEquals(2, player.getStrength());
 		assertEquals(110, player.getLife());
-		
-		
-		
 	}
 
 }
