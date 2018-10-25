@@ -2,9 +2,8 @@ public abstract class Creature {
 	 
 	// Sätter upp eclipse med Github - TEST
 	
-    private int life;
+    private int life, level;
     private double speed;
-    private int level;
     private final String characterName;
 	
 	public Creature(String characterName, int hp, double speed, int level){
@@ -17,6 +16,12 @@ public abstract class Creature {
 		this.life = hp;
 		this.speed = speed;
 		this.level = level;
+	}
+	
+	public abstract int damageDealt();
+	
+	public String getName(){
+		return characterName;
 	}
 
     public int getLife(){
@@ -36,11 +41,18 @@ public abstract class Creature {
 		level++;
 	}
 	
-	public void damageTaken(){
-		if(life == 0){
+	public void setLife(int newLife){
+		if(newLife > 500){
+			throw new IllegalArgumentException("Max life is 500");
+		}
+		this.life = newLife;
+	}
+	
+	public void damageTaken(int damage){
+		if(life <= 0){
 			throw new IllegalStateException("Creature is already dead, can't have less than 0 life");
 		}
-		this.life = life - 10;
+		life = life - damage;
 	}
 
 }
