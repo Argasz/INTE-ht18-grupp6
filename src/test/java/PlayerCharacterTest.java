@@ -177,5 +177,14 @@ class PlayerCharacterTest {
 		assertEquals(4*BASE_MDEF, player.getMana());
 		assertEquals(4*BASE_MDEF, player.getMagicRes());
 	}
+    
+    @Test
+    public void testInvalidAboveMaxLevel(){
+    	PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 50);
+    	
+    	assertThrows(IllegalStateException.class, () -> {
+			player.increaseLevel();
+		});
+    }
 
 }

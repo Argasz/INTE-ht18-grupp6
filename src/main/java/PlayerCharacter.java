@@ -126,7 +126,7 @@ public class PlayerCharacter extends Creature {
 	
 	public void increaseLevel(){
 		if(getLevel() == 50){
-			return;
+			throw new IllegalStateException("Character can't go above max level!");
 		}
 		gainLevel();
 		strength++;
