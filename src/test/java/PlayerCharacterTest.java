@@ -180,7 +180,7 @@ class PlayerCharacterTest {
     public void testAgilityBaseGrowth2(){
         PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
         p.setAgility(11);
-        p.setStrength(11);
+        p.setStamina(11);
         int expectedEva = 11*BASE_EVA;
         int expectedSpeed = 11*BASE_SPEED;
         assertEquals(expectedEva, p.getEvasion());
