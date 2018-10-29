@@ -151,7 +151,8 @@ public class InventoryTest {
 		
 		assertFalse(b1.removeItemFromInventory("deathpack"));
 		
-	} 
+	}
+	
 	
 }
 	

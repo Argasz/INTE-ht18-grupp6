@@ -8,16 +8,14 @@ public class ItemTest {
 	public void testGetValue() {
 		Item i = new Item("hej",1,10,1,1,1,1);
 		
-		int value = i.getValue();
-		assertEquals(value,1);
+		assertEquals(i.getValue(),1);
 	}
 	
 	@Test
-	public void testGetWeight() {
+	public void testGetSize() {
 		Item i = new Item("hej",10,1,1,1,1,1);
-		
-		int weight = i.getWeight();
-		assertEquals(weight,1);
+	
+		assertEquals(i.getSize(),1);
     }
 	
 	@Test
