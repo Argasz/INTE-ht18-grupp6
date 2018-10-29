@@ -11,13 +11,14 @@ public class PlayerCharacter extends Creature {
     final int BASE_MP = 2;
     final int BASE_MDEF = 2;
 
-	public PlayerCharacter(String characterName, int life, double speed, int level) {
+	public PlayerCharacter(String characterName, int life, int speed, int level) {
 		super(characterName, life, speed, level);
 		this.strength = 1;
 		this.stamina = 1;
 		this.agility = 1;
 		this.intelligence = 1;
-		this.evasion = 1;
+		calculateStats();
+
 	}
 
     public int getAttackPower() {
@@ -142,6 +143,8 @@ public class PlayerCharacter extends Creature {
 	private void calculateStats(){
         calcApPhysDef();
         calcLifeCarry();
+        calcManaMdef();
+        calcSpeedEva();
 
     }
 
@@ -189,5 +192,48 @@ public class PlayerCharacter extends Creature {
             }
         }
     }
+
+	private void calcSpeedEva(){
+		if(stamina < 10){
+			if(agility < 10){
+				evasion = agility*BASE_EVA;
+				setSpeed( agility*BASE_SPEED);
+			}else{
+				evasion = 9*BASE_EVA;
+				evasion += (agility-9)*(BASE_EVA * 2);
+				int newSpeed = 9*BASE_SPEED + (agility-9) * (BASE_SPEED * 2);
+				setSpeed(newSpeed);
+			}
+		}else{
+			if(agility < 10){
+				evasion = agility * (BASE_EVA/2);
+				setSpeed(agility * (BASE_PHYSDEF/2));
+			}else{
+				evasion = agility*BASE_EVA;
+				setSpeed(agility*BASE_SPEED);
+			}
+		}
+	}
+
+	private void calcManaMdef(){
+		if(strength < 10){
+			if(intelligence < 10){
+				mana = intelligence*BASE_MP;
+				magicRes = intelligence*BASE_MDEF;
+			}else{
+				mana = 9*BASE_MP;
+				mana += (intelligence-9)*(BASE_MP * 2);
+				magicRes = 9*BASE_MDEF + (intelligence-9) * (BASE_MDEF * 2);
+			}
+		}else{
+			if(intelligence < 10){
+				mana = intelligence * (BASE_MP/2);
+				magicRes = intelligence * (BASE_MDEF/2);
+			}else{
+				mana = intelligence*BASE_MP;
+				magicRes = intelligence*BASE_MDEF;
+			}
+		}
+	}
 
 }

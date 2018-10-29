@@ -6,7 +6,7 @@ public abstract class Creature {
     private double speed;
     private final String characterName;
 	
-	public Creature(String characterName, int hp, double speed, int level){
+	public Creature(String characterName, int hp, int speed, int level){
 		if(characterName.length() == 0){
 			throw new IllegalArgumentException("Illegal argument: name has to be at least 1 character long");
 		} else if (characterName.length() > 20) {
@@ -24,8 +24,13 @@ public abstract class Creature {
 		return characterName;
 	}
 
-    public int getLife(){
-    	return life;}
+    public int getLife() {
+		return life;
+	}
+
+	public void setSpeed(int speed){
+		this.speed = speed;
+	}
 
 	public double getSpeed(){
 		return speed;
