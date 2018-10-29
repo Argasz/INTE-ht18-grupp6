@@ -22,7 +22,7 @@ public class CreatureTest {
 		assertEquals(1, ((PlayerCharacter)player).getStrength());
 		assertEquals(1, ((PlayerCharacter)player).getLevel());
 		assertEquals(6, ((PlayerCharacter)player).getLife());
-		assertEquals(1.0, player.getSpeed());
+		assertEquals(4, player.getSpeed());
 	}
 	
 	@Test
@@ -194,7 +194,7 @@ public class CreatureTest {
 	@Test
 	public void testBuffStamina(){
 		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1, 1);
-		player.buffStamina();
+		player.setStamina(2);
 		
 		assertEquals(8, player.getLife());
 	}
