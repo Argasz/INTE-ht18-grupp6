@@ -41,8 +41,6 @@ public abstract class Creature {
 	}
 	
 	public void gainLevel(){
-		if(level == 10)
-			return;
 		level++;
 	}
 	

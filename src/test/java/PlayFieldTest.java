@@ -135,7 +135,6 @@ public class PlayFieldTest {
 
     private boolean traverse(PlayField field){
         Point start = field.findChars(TILES.FLOOR.getSymbol()).get(0);
-
         Set<Point> vis = flood(pf.getFieldMatrix(), new HashSet<Point>(), start);
 
         boolean found = true;
