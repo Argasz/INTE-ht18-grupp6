@@ -58,12 +58,21 @@ class PlayerCharacterTest {
     }
 
     @Test
-    public void testStrengthBaseGrowth(){
+    public void testStrengthBaseGrowth1(){
         PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
         p.setStrength(9);
         p.setIntelligence(9);
         assertEquals(BASE_AP * 9, p.getAttackPower());
         assertEquals(BASE_PHYSDEF * 9, p.getPhysDef());
+    }
+
+    @Test
+    public void testStrengthBaseGrowth2(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        p.setStrength(11);
+        p.setIntelligence(11);
+        assertEquals(BASE_AP * 11, p.getAttackPower());
+        assertEquals(BASE_PHYSDEF * 11, p.getPhysDef());
     }
 
     @Test
@@ -104,11 +113,20 @@ class PlayerCharacterTest {
     }
 
     @Test
-    public void testStaminaBaseGrowth(){
+    public void testStaminaBaseGrowth1(){
         PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
         p.setStamina(9);
         assertEquals(BASE_HP * 9, p.getLife());
         assertEquals(BASE_CARRY * 9, p.getCarryWeight());
+    }
+
+    @Test
+    public void testStaminaBaseGrowth2(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        p.setStamina(11);
+        p.setAgility(11);
+        assertEquals(BASE_HP * 11, p.getLife());
+        assertEquals(BASE_CARRY * 11, p.getCarryWeight());
     }
 
     @Test
@@ -147,5 +165,98 @@ class PlayerCharacterTest {
             p.setAgility(101);
         });
     }
+
+    @Test
+    public void testAgilityBaseGrowth1(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setAgility(9);
+        int expectedEva = 9*BASE_EVA;
+        int expectedSpeed = 9*BASE_SPEED;
+        assertEquals(expectedEva, p.getEvasion());
+        assertEquals(expectedSpeed, p.getSpeed());
+    }
+
+    @Test
+    public void testAgilityBaseGrowth2(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setAgility(11);
+        p.setStrength(11);
+        int expectedEva = 11*BASE_EVA;
+        int expectedSpeed = 11*BASE_SPEED;
+        assertEquals(expectedEva, p.getEvasion());
+        assertEquals(expectedSpeed, p.getSpeed());
+    }
+
+    @Test
+    public void testAgilityMinGrowth(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setStamina(11);
+        p.setAgility(9);
+        int expectedEva = 9*(BASE_EVA/2);
+        int expectedSpeed = 9*(BASE_SPEED/2);
+        assertEquals(expectedEva, p.getEvasion());
+        assertEquals(expectedSpeed, p.getSpeed());
+    }
+
+    @Test
+    public void testAgilityMaxGrowth(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setStamina(9);
+        p.setAgility(11);
+        int expectedEva = BASE_EVA*9 + ((BASE_EVA * 2) * (11-9));
+        int expectedSpeed = BASE_SPEED*9 + ((BASE_SPEED * 2) * (11-9));
+        assertEquals(expectedEva, p.getEvasion());
+        assertEquals(expectedSpeed, p.getSpeed());
+    }
+
+    @Test
+    public void testSetIntelligenceUnder1(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        assertThrows(IllegalArgumentException.class, () ->{
+            p.setIntelligence(0);
+        });
+    }
+
+    @Test
+    public void testSetIntelligenceOverMax(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        assertThrows(IllegalArgumentException.class, () ->{
+            p.setIntelligence(101);
+        });
+    }
+
+    @Test
+    public void testIntelligenceBaseGrowth1(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setIntelligence(9);
+        int expectedMp= 9*BASE_MP;
+        int expectedMdef = 9*BASE_MDEF;
+        assertEquals(expectedMp, p.getMana());
+        assertEquals(expectedMdef, p.getMagicRes());
+    }
+
+    @Test
+    public void testIntelligenceBaseGrowth2(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setIntelligence(11);
+        p.setStrength(11);
+        int expectedMp= 11*BASE_MP;
+        int expectedMdef = 11*BASE_MDEF;
+        assertEquals(expectedMp, p.getMana());
+        assertEquals(expectedMdef, p.getMagicRes());
+    }
+
+
+    @Test
+    public void testIntelligenceMaxGrowth(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        p.setStrength(9);
+        p.setIntelligence(11);
+        int expectedMp= BASE_MP*9 + ((BASE_MP * 2) * (11-9));
+        int expectedMdef = BASE_MDEF*9 + ((BASE_MDEF * 2) * (11-9));
+        assertEquals(expectedMp, p.getMana());
+        assertEquals(expectedMdef, p.getMagicRes());
+    }
+
 
 }

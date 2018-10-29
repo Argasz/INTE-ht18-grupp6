@@ -21,7 +21,7 @@ public class CreatureTest {
 		assertEquals(1, ((PlayerCharacter)player).getStamina());
 		assertEquals(1, ((PlayerCharacter)player).getStrength());
 		assertEquals(1, ((PlayerCharacter)player).getLevel());
-		assertEquals(100, ((PlayerCharacter)player).getLife());
+		assertEquals(6, ((PlayerCharacter)player).getLife());
 		assertEquals(1.0, player.getSpeed());
 	}
 	
@@ -36,14 +36,14 @@ public class CreatureTest {
 	public void testGetLife() {
 		// Testa karakt�rens HP - heltal
 		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
-		assertEquals(100, player.getLife());
+		assertEquals(6, player.getLife());
 	}
 
 	@Test
 	public void testGetSpeed() {
 		// Testa karaktärens Hastighet - flyttal
 		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
-		assertEquals(1.0, player.getSpeed());
+		assertEquals(4, player.getSpeed());
 	}
 	
 	@Test
@@ -196,8 +196,7 @@ public class CreatureTest {
 		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1, 1);
 		player.buffStamina();
 		
-		assertEquals(110, player.getLife());
-		assertNotEquals(120, player.getLife());
+		assertEquals(8, player.getLife());
 	}
 	
 	@Test
