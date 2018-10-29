@@ -1,9 +1,9 @@
 public abstract class Creature {
 	 
-	// SÃ¤tter upp eclipse med Github - TEST
+	// Sätter upp eclipse med Github - TEST
 	
     private int life, level;
-    private double speed;
+    private int speed;
     private final String characterName;
 	
 	public Creature(String characterName, int hp, int speed, int level){
