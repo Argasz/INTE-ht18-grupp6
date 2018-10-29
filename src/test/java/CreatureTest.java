@@ -230,16 +230,5 @@ public class CreatureTest {
 		
 		assertEquals(150, player.getLife());
 	}
-	
-	@Test
-	public void testPlayerStatsAfterLvlUp(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
-		 
-		player.increaseLevel();
-		assertEquals(2, player.getLevel());
-		assertEquals(2, player.getStamina());
-		assertEquals(2, player.getStrength());
-		assertEquals(110, player.getLife());
-	}
 
 }
