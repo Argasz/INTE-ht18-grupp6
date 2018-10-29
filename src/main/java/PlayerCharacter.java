@@ -137,8 +137,6 @@ public class PlayerCharacter extends Creature {
 	}
 	
 	public int damageDealt(){
-		if(strength == 0)
-			return 5;
 		return 5 * strength;
 	}
 
