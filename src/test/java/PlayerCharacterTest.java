@@ -88,6 +88,22 @@ class PlayerCharacterTest {
     }
 
     @Test
+    public void testSetStaminaUnder1(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        assertThrows(IllegalArgumentException.class, () ->{
+            p.setStamina(0);
+        });
+    }
+
+    @Test
+    public void testSetStaminaOverMax(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        assertThrows(IllegalArgumentException.class, () ->{
+            p.setStamina(101);
+        });
+    }
+
+    @Test
     public void testStaminaBaseGrowth(){
         PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
         p.setStamina(9);
@@ -116,6 +132,20 @@ class PlayerCharacterTest {
         assertEquals(expectedCarry, p.getCarryWeight());
     }
 
+    @Test
+    public void testSetAgilityUnder1(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        assertThrows(IllegalArgumentException.class, () ->{
+            p.setAgility(0);
+        });
+    }
 
+    @Test
+    public void testSetAgilityOverMax(){
+        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        assertThrows(IllegalArgumentException.class, () ->{
+            p.setAgility(101);
+        });
+    }
 
 }
