@@ -89,17 +89,17 @@ public class CreatureTest {
 	public void testGetStrength(){
 		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
-		assertEquals(0, player.getStrength());
+		assertEquals(1, player.getStrength());
 	}
 	
 	@Test
 	public void testGetStamina(){
 		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1.0, 1);
 		
-		assertEquals(0, player.getStamina());
+		assertEquals(1, player.getStamina());
 		
 		player.increaseLevel();
-		assertEquals(1, player.getStamina());
+		assertEquals(2, player.getStamina());
 	}
 	
 	@Test

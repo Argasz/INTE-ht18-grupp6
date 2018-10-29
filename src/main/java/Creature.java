@@ -3,10 +3,10 @@ public abstract class Creature {
 	// Sätter upp eclipse med Github - TEST
 	
     private int life, level;
-    private double speed;
+    private int speed;
     private final String characterName;
 	
-	public Creature(String characterName, int hp, double speed, int level){
+	public Creature(String characterName, int hp, int speed, int level){
 		if(characterName.length() == 0){
 			throw new IllegalArgumentException("Illegal argument: name has to be at least 1 character long");
 		} else if (characterName.length() > 20) {
@@ -48,11 +48,26 @@ public abstract class Creature {
 		this.life = newLife;
 	}
 	
+	private void setSpeed(int newSpeed) {
+		if(newSpeed > 500){
+			throw new IllegalArgumentException("Max speed is 500");
+		}
+		this.speed = newSpeed;
+	}
 	public void damageTaken(int damage){
 		if(life <= 0){
 			throw new IllegalStateException("Creature is already dead, can't have less than 0 life");
 		}
 		life = life - damage;
 	}
+	
+	public void useItem(Item i) {
+		this.setLife(i.getLifeStat());
+		this.setSpeed(i.getSpeedStat());
+		this.setLevel(i.getLevelStat());
+		
+	}
+
+
 
 }
