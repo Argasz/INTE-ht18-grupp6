@@ -2,15 +2,19 @@
 public class Item {
 	
 	private String name;
-	private int value;
-	private int weight;
+	private int value, size, strengthStat, agilityStat, staminaStat, intelligenceStat;
+	
 	//fler kan läggas till som t.ex. rarity/color osv.
 	
 	
-	public Item (String name, int value, int weight) {
+	public Item (String name, int value, int size, int strengthStat, int agilityStat, int staminaStat, int intelligenceStat ) {
 		this.name = name;
-		this.value = value;
-		this.weight = weight;
+		this.value=value;
+		this.size=size;
+		this.strengthStat=strengthStat;
+		this.agilityStat=agilityStat;
+		this.staminaStat=staminaStat;
+		this.intelligenceStat=intelligenceStat;
 	}
 	
 	public String getName() {
@@ -21,8 +25,33 @@ public class Item {
 		return value;
 	}
 	
-	public int getWeight() {
-		return weight;
+	public int getSize() {
+		return Size;
 	}
+
+	public int getStrengthStat() {
+		return strengthStat;
+	}
+
+
+	public int getAgilityStat() {
+		return agilityStat;
+	}
+
+	public int getStaminaStat() {
+		return staminaStat;
+	}
+
+	public int getIntelligenceStat() {
+		return intelligenceStat;
+	}
+	
+	public int sizeToStats(int size) {
+		//gör klart imorgon
+		//!!
+	}
+	
+	
+
 
 }

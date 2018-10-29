@@ -1,12 +1,12 @@
 public abstract class Creature {
 	 
-	// SÃ¤tter upp eclipse med Github - TEST
+	// Sätter upp eclipse med Github - TEST
 	
     private int life, level;
-    private double speed;
+    private int speed;
     private final String characterName;
 	
-	public Creature(String characterName, int hp, double speed, int level){
+	public Creature(String characterName, int hp, int speed, int level){
 		if(characterName.length() == 0){
 			throw new IllegalArgumentException("Illegal argument: name has to be at least 1 character long");
 		} else if (characterName.length() > 20) {
@@ -24,8 +24,13 @@ public abstract class Creature {
 		return characterName;
 	}
 
-    public int getLife(){
-    	return life;}
+    public int getLife() {
+		return life;
+	}
+
+	public void setSpeed(int speed){
+		this.speed = speed;
+	}
 
 	public double getSpeed(){
 		return speed;
@@ -36,8 +41,6 @@ public abstract class Creature {
 	}
 	
 	public void gainLevel(){
-		if(level == 10)
-			return;
 		level++;
 	}
 	
