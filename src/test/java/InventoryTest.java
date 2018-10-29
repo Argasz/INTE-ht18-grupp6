@@ -1,13 +1,7 @@
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,127 +14,144 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class InventoryTest {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
+	@Test
+	public void testInventoryArraySizeIsEqualToConstant() {
+		Inventory b1 = new Inventory();
+		assertTrue(Inventory.MAX_ITEMS_IN_BAG == b1.getBag().length);
+	}
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
+	@Test
+    public void testPrintInventory() {
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		Item i2 = new Item("speedpack", 15, 5, 1, 0, 1, 1);
+		Item i3 = new Item("deathpack", 15, 5, 1, 0, 1, 1);
+		b1.addItemToInventory(i1);
+		b1.addItemToInventory(i2);
+		b1.addItemToInventory(i3);
 
-    @Before
-    public void setUp() throws Exception {
-    }
+       
+        
+        assertEquals("healthpack, speedpack, deathpack, ",b1.toString());
+  }
+	@Test
+	// before this test, create an item
+	public void testAddItemToInventory() {
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		Item i2 = new Item("speedpack", 15, 5, 1, 0, 1, 1);
+		Item i3 = new Item("deathpack", 15, 5, 1, 0, 1, 1);
+		b1.addItemToInventory(i1);
+		b1.addItemToInventory(i2);
+		b1.addItemToInventory(i3);
 
-    @After
-    public void tearDown() throws Exception {
-    }
+		assertTrue(b1.bagContains("healthpack"));
+	}
+	
+	@Test
+	public void testAddItemToFullInventory() {
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		for (int i = 0; i < 10; i++) {
+			Item i2 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+				b1.addItemToInventory(i2);
+		}
+		assertFalse(b1.addItemToInventory(i1));
+	}
 
-    public void testInventoryArraySizeIsEqualToConstant(Item[] bag) {
-        assertTrue(Inventory.MAX_ITEMS_IN_BAG == bag.length);
-    }
+	@Test
+	public void testRemoveItemFromInventry() {
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		Item i2 = new Item("speedpack", 15, 5, 1, 0, 1, 1);
+		Item i3 = new Item("deathpack", 15, 5, 1, 0, 1, 1);
+		b1.addItemToInventory(i1);
+		b1.addItemToInventory(i2);
+		b1.addItemToInventory(i3);
 
-    public void testInventoryOnlyContainsItems() {
-   /* Inventory inv = new Inventory();
-    Item j= new Item();
-        for (Item i : inv) {
-            if (i != null) {
-                assertTrue(i instanceof Item);
-            }
+		b1.removeItemFromInventory("healthpack");
+		assertTrue(!b1.bagContains("healthpack"));
+	}
 
-        }*/
-    }
+	@Test
+	public void testRemoveAllItemsFromInventry() {
 
-    public void testMAX_ITEMS_IN_BAG_IsNotNegative() {
-        assertTrue(Inventory.MAX_ITEMS_IN_BAG >= 0);
-    }
+		boolean Empty = true;
 
-    public void testPrintInventory(Item[] bag) {
-        Inventory inv = new Inventory();
-        Item j= new Item("a", 1, 2);
-        inv.AddItemToInventory(j);
-        String print = inv.printInventory(inv.getBag());
-        assertTrue(print.equals("sword, bomb, gun,"));
-    }
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		Item i2 = new Item("speedpack", 15, 5, 1, 0, 1, 1);
+		Item i3 = new Item("deathpack", 15, 5, 1, 0, 1, 1);
+		b1.addItemToInventory(i1);
+		b1.addItemToInventory(i2);
+		b1.addItemToInventory(i3);
 
-    //before this test, create an item
-    public void testAddItemToInventory() {
-        Inventory inv = new Inventory();
-        Item j= new Item("a", 1 ,2);
-        inv.AddItemToInventory(j);
-        assertTrue(inv.bagContains(j));
-    }
+		b1.removeAllItemsFromInventry();
 
-    public void testRemoveItemFromInventry() {
-        Inventory inv = new Inventory();
-        Item j= new Item("a", 1, 2);
-        inv.removeItemFromInventory(j);
-        assertTrue(!inv.bagContains(j));
-    }
+		for (Item i : b1.getBag()) {
+			if (i != null) {
+				Empty = false;
+				break;
+			}
+		}
+		assertTrue(Empty);
 
-    public void testRemoveAllItemsFromInventry() {
-        Item[] bag = new Item[Inventory.MAX_ITEMS_IN_BAG];
-        for (int i = 0; i <= bag.length; i++) {
-            if (bag[i] != null) {
-                bag[i] = null;
-            }
-        }
-        boolean NotEmpty = true;
-        for (Item i : bag) {
-            if (i != null) {
-                NotEmpty = false;
-                break;
-            }
-        }
-        assertTrue(NotEmpty);
+	}
 
-    }
+	/**
+	 * Test of bagContains method, of class Inventory.
+	 */
+	@Test
+	public void bagContains() {
 
-    /**
-     * Test of bagContains method, of class Inventory.
-     */
-    @Test
-    public void testBagContains() {
-        System.out.println("bagContains");
-        Item j = null;
-        Inventory instance = new Inventory();
-        boolean expResult = false;
-        boolean result = instance.bagContains(j);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    }
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		Item i2 = new Item("speedpack", 15, 5, 1, 0, 1, 1);
+		Item i3 = new Item("deathpack", 15, 5, 1, 0, 1, 1);
+		b1.addItemToInventory(i1);
+		b1.addItemToInventory(i2);
+		b1.addItemToInventory(i3);
 
-    /**
-     * Test of getBag method, of class Inventory.
-     */
-    /*
-    @Test
-    public void testGetBag() {
-        System.out.println("getBag");
-        Item j = null;
-        Inventory instance = new Inventory();
-        Item[] expResult = null;
-        Item[] result = instance.getBag();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-    }
-    */
+		assertTrue(b1.bagContains("healthpack"));
 
-    /**
-     * Test of removeItemFromInventory method, of class Inventory.
-     */
-    @Test
-    public void testRemoveItemFromInventory() {
-        System.out.println("removeItemFromInventory");
-        Item j = null;
-        Inventory instance = new Inventory();
-        instance.removeItemFromInventory(j);
-        // TODO review the generated test code and remove the default call to fail.
-    }
+		// TODO review the generated test code and remove the default call to fail.
+	}
+
+	/**
+	 * Test of getBag method, of class Inventory.
+	 */
+	/*
+	 * @Test public void testGetBag() { System.out.println("getBag"); Item j = null;
+	 * Inventory instance = new Inventory(); Item[] expResult = null; Item[] result
+	 * = instance.getBag(); assertArrayEquals(expResult, result); // TODO review the
+	 * generated test code and remove the default call to fail. }
+	 */
+
+	/**
+	 * Test of removeItemFromInventory method, of class Inventory.
+	 */
+	@Test
+	public void testRemoveItemFromInventory() {
+		Inventory b1 = new Inventory();
+		Item i1 = new Item("healthpack", 15, 5, 1, 0, 1, 1);
+		Item i2 = new Item("speedpack", 15, 5, 1, 0, 1, 1);
+		Item i3 = new Item("deathpack", 15, 5, 1, 0, 1, 1);
+		b1.addItemToInventory(i1);
+		b1.addItemToInventory(i2);
+		b1.addItemToInventory(i3);
+		
+		b1.removeItemFromInventory("deathpack");
+		assertFalse(b1.bagContains("deathpack"));	
+		
+	}
+	@Test
+	public void testRemoveItemFromEmptyInventory() {
+		Inventory b1 = new Inventory();
+
+		
+		assertFalse(b1.removeItemFromInventory("deathpack"));
+		
+	} 
+	
 }
-//public void testInventoryNotNull(Item[] bag){
-//    for (Item i: bag) {
-//        AssertNotNull(i);
-//}
-//}
-
+	

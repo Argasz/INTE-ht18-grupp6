@@ -1,6 +1,6 @@
 public abstract class Creature {
 	 
-	// SÃ¤tter upp eclipse med Github - TEST
+	// Sätter upp eclipse med Github - TEST
 	
     private int life, level;
     private int speed;
@@ -24,8 +24,13 @@ public abstract class Creature {
 		return characterName;
 	}
 
-    public int getLife(){
-    	return life;}
+    public int getLife() {
+		return life;
+	}
+
+	public void setSpeed(int speed){
+		this.speed = speed;
+	}
 
 	public double getSpeed(){
 		return speed;
@@ -48,26 +53,11 @@ public abstract class Creature {
 		this.life = newLife;
 	}
 	
-	private void setSpeed(int newSpeed) {
-		if(newSpeed > 500){
-			throw new IllegalArgumentException("Max speed is 500");
-		}
-		this.speed = newSpeed;
-	}
 	public void damageTaken(int damage){
 		if(life <= 0){
 			throw new IllegalStateException("Creature is already dead, can't have less than 0 life");
 		}
 		life = life - damage;
 	}
-	
-	public void useItem(Item i) {
-		this.setLife(i.getLifeStat());
-		this.setSpeed(i.getSpeedStat());
-		this.setLevel(i.getLevelStat());
-		
-	}
-
-
 
 }
