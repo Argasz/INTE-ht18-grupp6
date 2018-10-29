@@ -125,13 +125,15 @@ public class PlayerCharacter extends Creature {
 	}
 	
 	public void increaseLevel(){
-		if(getLevel() == 10){
+		if(getLevel() == 50){
 			return;
 		}
-		setLife(100);
 		gainLevel();
-		buffStamina();
-		buffStrength();
+		strength++;
+		stamina++;
+		agility++;
+		intelligence++;
+		calculateStats();
 	}
 	
 	public int damageDealt(){

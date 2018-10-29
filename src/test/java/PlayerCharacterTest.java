@@ -147,5 +147,35 @@ class PlayerCharacterTest {
             p.setAgility(101);
         });
     }
+    
+    @Test
+	public void testPlayerStatsAfterLvlUp(){
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		 
+		player.increaseLevel();
+		assertEquals(2, player.getLevel());
+		assertEquals(2, player.getStamina());
+		assertEquals(2, player.getStrength());
+		assertEquals(2, player.getAgility());
+		assertEquals(2, player.getIntelligence());
+		assertEquals(110, player.getLife());
+		    
+		assertEquals(2*BASE_AP, player.getAttackPower());
+		assertEquals(2*BASE_PHYSDEF, player.getPhysDef());
+		assertEquals(2*BASE_CARRY, player.getCarryWeight());
+		assertEquals(2*BASE_MDEF, player.getEvasion());
+		assertEquals(2*BASE_MDEF, player.getMana());
+		assertEquals(2*BASE_MDEF, player.getMagicRes());
+		
+		player.increaseLevel();
+		player.increaseLevel();
+		
+		assertEquals(4*BASE_AP, player.getAttackPower());
+		assertEquals(4*BASE_PHYSDEF, player.getPhysDef());
+		assertEquals(4*BASE_CARRY, player.getCarryWeight());
+		assertEquals(4*BASE_MDEF, player.getEvasion());
+		assertEquals(4*BASE_MDEF, player.getMana());
+		assertEquals(4*BASE_MDEF, player.getMagicRes());
+	}
 
 }
