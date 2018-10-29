@@ -1,7 +1,7 @@
 
 public class Monster extends Creature {
 
-	public Monster(String characterName, int hp, double speed, int level) {
+	public Monster(String characterName, int hp, int speed, int level) {
 		super(characterName, hp, speed, level);
 	}
 	
