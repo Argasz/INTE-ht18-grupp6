@@ -1,4 +1,3 @@
-import com.thoughtworks.qdox.model.expression.Equals;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
