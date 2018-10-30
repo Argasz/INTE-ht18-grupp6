@@ -106,26 +106,10 @@ public class PlayerCharacter extends Creature {
 	public int getEvasion(){
 		return evasion;
 	}
-	
-	public void buffStamina(){
-		stamina++;
-		increaseLife();
-	}
-	
-	public void buffStrength(){
-		strength++;
-	}
-	
-	public void buffDodgeRating(){
-		evasion++;
-	}
-	
-	private void increaseLife(){
-		setLife(getLife() + (10 * stamina));
-	}
+
 	
 	public void increaseLevel(){
-		if(getLevel() == 50){
+		if(getLevel() >= 50){
 			throw new IllegalStateException("Character can't go above max level!");
 		}
 		gainLevel();

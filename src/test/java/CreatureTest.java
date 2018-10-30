@@ -120,7 +120,7 @@ public class CreatureTest {
 	@Test
 	public void testGainLevel() {
 		// Karaktären kan bara gå upp 1 lvl i taget
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
 
 		assertEquals(1, player.getLevel());
 		player.gainLevel();
@@ -131,11 +131,14 @@ public class CreatureTest {
 		player.gainLevel();
 
 		assertEquals(5, player.getLevel());
-		for (int i = player.getLevel(); i < 11; i++) {
-			player.gainLevel();
+		for (int i = player.getLevel(); i < 50; i++) {
+			player.increaseLevel();
 		}
-		assertNotEquals(11, player.getLevel());
-		assertEquals(10, player.getLevel());
+		assertThrows(IllegalStateException.class, () ->{
+			player.increaseLevel();
+		});
+		assertNotEquals(51, player.getLevel());
+		assertEquals(50, player.getLevel());
 
 	}
 	
@@ -174,11 +177,8 @@ public class CreatureTest {
 	public void testPlayerCharacterDmgDealt(){
 		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
 		assertEquals(5, player.damageDealt());
-		
-		player.buffStrength();
-		assertEquals(10, player.damageDealt());
-		
-		player.gainLevel();
+
+		player.setStrength(2);
 		assertEquals(10, player.damageDealt());
 		
 		player.increaseLevel();
@@ -190,44 +190,6 @@ public class CreatureTest {
 		Creature monster = new Monster("Monster", 100, 1, 1);
 		assertEquals(10, monster.damageDealt());
 	}
-	
-	@Test
-	public void testBuffStamina(){
-		PlayerCharacter player = new PlayerCharacter("Monster", 100, 1, 1);
-		player.setStamina(2);
-		
-		assertEquals(8, player.getLife());
-	}
-	
-	@Test
-	public void testBuffStrength(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
-		player.buffStrength();
-		
-		assertEquals(2, player.getStrength());
-		
-	}
-	
-	@Test
-	public void testBuffDodge(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
-		
-		player.buffDodgeRating();
-		player.buffDodgeRating();
-		assertEquals(3, player.getEvasion());
-		
-		player.increaseLevel();
-		player.increaseLevel();
-		assertEquals(5, player.getEvasion());
-	}
-	
-	@Test
-	public void testPlayerLifeAfterBuff(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
-		for(int i = 0; i < 5; i++)
-			player.buffStamina();
-		
-		assertEquals(150, player.getLife());
-	}
+
 
 }
