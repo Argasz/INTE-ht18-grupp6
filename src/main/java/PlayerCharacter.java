@@ -1,7 +1,7 @@
 
 public class PlayerCharacter extends Creature {
 	private int strength, stamina, agility, intelligence;
-	private int attackPower, physDef, carryWeight, magicRes, mana, evasion;
+	private int attackPower, physDef, carryWeight, magicDef, mana, evasion;
     static private final int BASE_AP = 2;
     static private final int BASE_PHYSDEF = 4;
     static private final int BASE_HP = 6;
@@ -32,8 +32,8 @@ public class PlayerCharacter extends Creature {
         return carryWeight;
     }
 
-    public int getMagicRes() {
-        return magicRes;
+    public int getMagicDef() {
+        return magicDef;
     }
 
     public int getMana() {
@@ -202,19 +202,19 @@ public class PlayerCharacter extends Creature {
 		if(strength < 10){
 			if(intelligence < 10){
 				mana = intelligence*BASE_MP;
-				magicRes = intelligence*BASE_MDEF;
+				magicDef = intelligence*BASE_MDEF;
 			}else{
 				mana = 9*BASE_MP;
 				mana += (intelligence-9)*(BASE_MP * 2);
-				magicRes = 9*BASE_MDEF + (intelligence-9) * (BASE_MDEF * 2);
+				magicDef = 9*BASE_MDEF + (intelligence-9) * (BASE_MDEF * 2);
 			}
 		}else{
 			if(intelligence < 10){
 				mana = intelligence * (BASE_MP/2);
-				magicRes = intelligence * (BASE_MDEF/2);
+				magicDef = intelligence * (BASE_MDEF/2);
 			}else{
 				mana = intelligence*BASE_MP;
-				magicRes = intelligence*BASE_MDEF;
+				magicDef = intelligence*BASE_MDEF;
 			}
 		}
 	}

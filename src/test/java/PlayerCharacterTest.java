@@ -183,7 +183,7 @@ class PlayerCharacterTest {
 		assertEquals(2*BASE_CARRY, player.getCarryWeight());
 		assertEquals(2*BASE_EVA, player.getEvasion());
 		assertEquals(2*BASE_MP, player.getMana());
-		assertEquals(2*BASE_MDEF, player.getMagicRes());
+		assertEquals(2*BASE_MDEF, player.getMagicDef());
 		
 		player.increaseLevel();
 		player.increaseLevel();
@@ -193,7 +193,7 @@ class PlayerCharacterTest {
 		assertEquals(4*BASE_CARRY, player.getCarryWeight());
 		assertEquals(4*BASE_EVA, player.getEvasion());
 		assertEquals(4*BASE_MP, player.getMana());
-		assertEquals(4*BASE_MDEF, player.getMagicRes());
+		assertEquals(4*BASE_MDEF, player.getMagicDef());
 	}
     
     @Test
@@ -275,7 +275,7 @@ class PlayerCharacterTest {
         int expectedMp= 9*BASE_MP;
         int expectedMdef = 9*BASE_MDEF;
         assertEquals(expectedMp, p.getMana());
-        assertEquals(expectedMdef, p.getMagicRes());
+        assertEquals(expectedMdef, p.getMagicDef());
     }
 
     @Test
@@ -286,7 +286,7 @@ class PlayerCharacterTest {
         int expectedMp= 11*BASE_MP;
         int expectedMdef = 11*BASE_MDEF;
         assertEquals(expectedMp, p.getMana());
-        assertEquals(expectedMdef, p.getMagicRes());
+        assertEquals(expectedMdef, p.getMagicDef());
     }
 
 
@@ -298,7 +298,7 @@ class PlayerCharacterTest {
         int expectedMp= BASE_MP*9 + ((BASE_MP * 2) * (11-9));
         int expectedMdef = BASE_MDEF*9 + ((BASE_MDEF * 2) * (11-9));
         assertEquals(expectedMp, p.getMana());
-        assertEquals(expectedMdef, p.getMagicRes());
+        assertEquals(expectedMdef, p.getMagicDef());
     }
 
 
