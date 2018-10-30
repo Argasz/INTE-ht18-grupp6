@@ -2,23 +2,22 @@
 public class PlayerCharacter extends Creature {
 	private int strength, stamina, agility, intelligence;
 	private int attackPower, physDef, carryWeight, magicRes, mana, evasion;
-    final int BASE_AP = 2;
-    final int BASE_PHYSDEF = 4;
-    final int BASE_HP = 6;
-    final int BASE_CARRY = 10;
-    final int BASE_SPEED = 4;
-    final int BASE_EVA = 4;
-    final int BASE_MP = 2;
-    final int BASE_MDEF = 2;
+    static private final int BASE_AP = 2;
+    static private final int BASE_PHYSDEF = 4;
+    static private final int BASE_HP = 6;
+    static private final int BASE_CARRY = 10;
+    static private final int BASE_SPEED = 4;
+    static private final int BASE_EVA = 4;
+    static private final int BASE_MP = 2;
+    static private final int BASE_MDEF = 2;
 
-	public PlayerCharacter(String characterName, int life, int speed, int level) {
-		super(characterName, life, speed, level);
+	public PlayerCharacter(String characterName) {
+		super(characterName);
 		this.strength = 1;
 		this.stamina = 1;
 		this.agility = 1;
 		this.intelligence = 1;
 		calculateStats();
-
 	}
 
     public int getAttackPower() {
@@ -219,5 +218,4 @@ public class PlayerCharacter extends Creature {
 			}
 		}
 	}
-
 }

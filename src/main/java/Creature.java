@@ -6,16 +6,14 @@ public abstract class Creature {
     private int speed;
     private final String characterName;
 	
-	public Creature(String characterName, int hp, int speed, int level){
+	public Creature(String characterName){
 		if(characterName.length() == 0){
 			throw new IllegalArgumentException("Illegal argument: name has to be at least 1 character long");
 		} else if (characterName.length() > 20) {
 			throw new IllegalArgumentException("Illegal argument: name too long, max 20 characters");
 		}
 		this.characterName = characterName;
-		this.life = hp;
-		this.speed = speed;
-		this.level = level;
+		level = 1;
 	}
 	
 	public abstract int damageDealt();
@@ -52,10 +50,11 @@ public abstract class Creature {
 	}
 	
 	public void damageTaken(int damage){
-		if(life <= 0){
-			throw new IllegalStateException("Creature is already dead, can't have less than 0 life");
+		if(life - damage  < 0){
+			life = 0;
+		}else {
+			life = life - damage;
 		}
-		life = life - damage;
 	}
 
 }

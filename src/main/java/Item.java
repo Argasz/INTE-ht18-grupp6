@@ -26,7 +26,7 @@ public class Item {
 	}
 	
 	public int getSize() {
-		return Size;
+		return size;
 	}
 
 	public int getStrengthStat() {
@@ -44,11 +44,6 @@ public class Item {
 
 	public int getIntelligenceStat() {
 		return intelligenceStat;
-	}
-	
-	public int sizeToStats(int size) {
-		//gör klart imorgon
-		//!!
 	}
 	
 	

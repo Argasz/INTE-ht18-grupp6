@@ -16,34 +16,34 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetValidStrength(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStrength(10);
         assertEquals(10,p.getStrength());
     }
     @Test
     public void testSetValidStamina(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(10);
         assertEquals(10,p.getStamina());
     }
 
     @Test
     public void testSetValidAgility(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setAgility(10);
         assertEquals(10,p.getAgility());
     }
 
     @Test
     public void testSetValidIntelligence(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setIntelligence(10);
         assertEquals(10,p.getIntelligence());
     }
 
     @Test
     public void testSetStrengthUnder1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setStrength(0);
         });
@@ -51,7 +51,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetStrengthOverMax(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setStrength(101);
         });
@@ -59,7 +59,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStrengthBaseGrowth1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStrength(9);
         p.setIntelligence(9);
         assertEquals(BASE_AP * 9, p.getAttackPower());
@@ -68,7 +68,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStrengthBaseGrowth2(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStrength(11);
         p.setIntelligence(11);
         assertEquals(BASE_AP * 11, p.getAttackPower());
@@ -77,7 +77,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStrengthMinGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStrength(9);
         p.setIntelligence(11);
         assertEquals( 9, p.getAttackPower());
@@ -87,7 +87,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStrengthMaxGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStrength(12);
         p.setIntelligence(9);
         int expectedAP = BASE_AP*9 + ((BASE_AP * 2) * (12-9));
@@ -98,7 +98,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetStaminaUnder1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setStamina(0);
         });
@@ -106,7 +106,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetStaminaOverMax(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setStamina(101);
         });
@@ -114,7 +114,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStaminaBaseGrowth1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(9);
         assertEquals(BASE_HP * 9, p.getLife());
         assertEquals(BASE_CARRY * 9, p.getCarryWeight());
@@ -122,7 +122,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStaminaBaseGrowth2(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(11);
         p.setAgility(11);
         assertEquals(BASE_HP * 11, p.getLife());
@@ -131,7 +131,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStaminaMinGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(9);
         p.setAgility(11);
         int expectedLife= 9*(BASE_HP/2);
@@ -142,7 +142,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testStaminaMaxGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 5, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(12);
         int expectedLife = BASE_HP*9 + ((BASE_HP * 2) * (12-9));
         int expectedCarry = BASE_CARRY*9 + ((BASE_CARRY * 2) * (12-9));
@@ -152,7 +152,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetAgilityUnder1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setAgility(0);
         });
@@ -160,7 +160,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetAgilityOverMax(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setAgility(101);
         });
@@ -168,7 +168,7 @@ class PlayerCharacterTest {
     
     @Test
 	public void testPlayerStatsAfterLvlUp(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		 
 		player.increaseLevel();
 		assertEquals(2, player.getLevel());
@@ -176,13 +176,13 @@ class PlayerCharacterTest {
 		assertEquals(2, player.getStrength());
 		assertEquals(2, player.getAgility());
 		assertEquals(2, player.getIntelligence());
-		assertEquals(110, player.getLife());
+		assertEquals(12, player.getLife());
 		    
 		assertEquals(2*BASE_AP, player.getAttackPower());
 		assertEquals(2*BASE_PHYSDEF, player.getPhysDef());
 		assertEquals(2*BASE_CARRY, player.getCarryWeight());
-		assertEquals(2*BASE_MDEF, player.getEvasion());
-		assertEquals(2*BASE_MDEF, player.getMana());
+		assertEquals(2*BASE_EVA, player.getEvasion());
+		assertEquals(2*BASE_MP, player.getMana());
 		assertEquals(2*BASE_MDEF, player.getMagicRes());
 		
 		player.increaseLevel();
@@ -191,15 +191,19 @@ class PlayerCharacterTest {
 		assertEquals(4*BASE_AP, player.getAttackPower());
 		assertEquals(4*BASE_PHYSDEF, player.getPhysDef());
 		assertEquals(4*BASE_CARRY, player.getCarryWeight());
-		assertEquals(4*BASE_MDEF, player.getEvasion());
-		assertEquals(4*BASE_MDEF, player.getMana());
+		assertEquals(4*BASE_EVA, player.getEvasion());
+		assertEquals(4*BASE_MP, player.getMana());
 		assertEquals(4*BASE_MDEF, player.getMagicRes());
 	}
     
     @Test
     public void testInvalidAboveMaxLevel(){
-    	PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 50);
-    	
+    	PlayerCharacter player = new PlayerCharacter("JohnDoe");
+
+        for (int i = 1; i < 50; i++) {
+            player.increaseLevel();
+        }
+
     	assertThrows(IllegalStateException.class, () -> {
 			player.increaseLevel();
 		});
@@ -207,7 +211,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testAgilityBaseGrowth1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setAgility(9);
         int expectedEva = 9*BASE_EVA;
         int expectedSpeed = 9*BASE_SPEED;
@@ -217,7 +221,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testAgilityBaseGrowth2(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setAgility(11);
         p.setStamina(11);
         int expectedEva = 11*BASE_EVA;
@@ -228,7 +232,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testAgilityMinGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(11);
         p.setAgility(9);
         int expectedEva = 9*(BASE_EVA/2);
@@ -239,7 +243,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testAgilityMaxGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStamina(9);
         p.setAgility(11);
         int expectedEva = BASE_EVA*9 + ((BASE_EVA * 2) * (11-9));
@@ -250,7 +254,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetIntelligenceUnder1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setIntelligence(0);
         });
@@ -258,7 +262,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testSetIntelligenceOverMax(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         assertThrows(IllegalArgumentException.class, () ->{
             p.setIntelligence(101);
         });
@@ -266,7 +270,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testIntelligenceBaseGrowth1(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setIntelligence(9);
         int expectedMp= 9*BASE_MP;
         int expectedMdef = 9*BASE_MDEF;
@@ -276,7 +280,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testIntelligenceBaseGrowth2(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setIntelligence(11);
         p.setStrength(11);
         int expectedMp= 11*BASE_MP;
@@ -288,7 +292,7 @@ class PlayerCharacterTest {
 
     @Test
     public void testIntelligenceMaxGrowth(){
-        PlayerCharacter p = new PlayerCharacter("player", 100, 1, 1);
+        PlayerCharacter p = new PlayerCharacter("player");
         p.setStrength(9);
         p.setIntelligence(11);
         int expectedMp= BASE_MP*9 + ((BASE_MP * 2) * (11-9));
