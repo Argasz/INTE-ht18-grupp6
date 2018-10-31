@@ -1,24 +1,23 @@
 
 public class PlayerCharacter extends Creature {
 	private int strength, stamina, agility, intelligence;
-	private int attackPower, physDef, carryWeight, magicRes, mana, evasion;
-    final int BASE_AP = 2;
-    final int BASE_PHYSDEF = 4;
-    final int BASE_HP = 6;
-    final int BASE_CARRY = 10;
-    final int BASE_SPEED = 4;
-    final int BASE_EVA = 4;
-    final int BASE_MP = 2;
-    final int BASE_MDEF = 2;
+	private int attackPower, physDef, carryWeight, magicDef, mana, evasion;
+    static private final int BASE_AP = 2;
+    static private final int BASE_PHYSDEF = 4;
+    static private final int BASE_HP = 6;
+    static private final int BASE_CARRY = 10;
+    static private final int BASE_SPEED = 4;
+    static private final int BASE_EVA = 4;
+    static private final int BASE_MP = 2;
+    static private final int BASE_MDEF = 2;
 
-	public PlayerCharacter(String characterName, int life, int speed, int level) {
-		super(characterName, life, speed, level);
+	public PlayerCharacter(String characterName) {
+		super(characterName);
 		this.strength = 1;
 		this.stamina = 1;
 		this.agility = 1;
 		this.intelligence = 1;
 		calculateStats();
-
 	}
 
     public int getAttackPower() {
@@ -33,8 +32,8 @@ public class PlayerCharacter extends Creature {
         return carryWeight;
     }
 
-    public int getMagicRes() {
-        return magicRes;
+    public int getMagicDef() {
+        return magicDef;
     }
 
     public int getMana() {
@@ -203,21 +202,20 @@ public class PlayerCharacter extends Creature {
 		if(strength < 10){
 			if(intelligence < 10){
 				mana = intelligence*BASE_MP;
-				magicRes = intelligence*BASE_MDEF;
+				magicDef = intelligence*BASE_MDEF;
 			}else{
 				mana = 9*BASE_MP;
 				mana += (intelligence-9)*(BASE_MP * 2);
-				magicRes = 9*BASE_MDEF + (intelligence-9) * (BASE_MDEF * 2);
+				magicDef = 9*BASE_MDEF + (intelligence-9) * (BASE_MDEF * 2);
 			}
 		}else{
 			if(intelligence < 10){
 				mana = intelligence * (BASE_MP/2);
-				magicRes = intelligence * (BASE_MDEF/2);
+				magicDef = intelligence * (BASE_MDEF/2);
 			}else{
 				mana = intelligence*BASE_MP;
-				magicRes = intelligence*BASE_MDEF;
+				magicDef = intelligence*BASE_MDEF;
 			}
 		}
 	}
-
 }

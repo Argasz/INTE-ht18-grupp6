@@ -5,17 +5,17 @@ public class CreatureTest {
 
 	@Test
 	public void testNewCreature() {
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1); // Testa konstruktorn
-		Creature playerNameLetter = new PlayerCharacter("aaaaabbbbbccccc", 100, 1, 1);
-		Creature playerNameInt = new PlayerCharacter("111112222233333", 100, 1, 1);
-		Creature playerNameLetterInt = new PlayerCharacter("aaaaabbbbb1111122222", 100, 1, 1);
+		Creature player = new PlayerCharacter("JohnDoe"); // Testa konstruktorn
+		Creature playerNameLetter = new PlayerCharacter("aaaaabbbbbccccc");
+		Creature playerNameInt = new PlayerCharacter("111112222233333");
+		Creature playerNameLetterInt = new PlayerCharacter("aaaaabbbbb1111122222");
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			Creature playerNoName = new PlayerCharacter("", 100, 1, 1);
+			Creature playerNoName = new PlayerCharacter("");
 		});
 
 		assertThrows(IllegalArgumentException.class, () -> {
-			Creature playerNoName = new PlayerCharacter("aaaaabbbbbcccccddddde", 100, 1, 1);
+			Creature playerNoName = new PlayerCharacter("aaaaabbbbbcccccddddde");
 		});
 		
 		assertEquals(1, ((PlayerCharacter)player).getStamina());
@@ -27,7 +27,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testGetName(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		assertEquals("JohnDoe", player.getName());
 	}
@@ -35,27 +35,27 @@ public class CreatureTest {
 	@Test
 	public void testGetLife() {
 		// Testa karakt�rens HP - heltal
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		Creature player = new PlayerCharacter("JohnDoe");
 		assertEquals(6, player.getLife());
 	}
 
 	@Test
 	public void testGetSpeed() {
 		// Testa karaktärens Hastighet - flyttal
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		Creature player = new PlayerCharacter("JohnDoe");
 		assertEquals(4, player.getSpeed());
 	}
 	
 	@Test
 	public void testGetAgility(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		assertEquals(1, player.getAgility());
 	}
 	
 	@Test
 	public void testGetDodge(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		assertEquals(4, player.getEvasion());
 		player.setAgility(2);
@@ -64,7 +64,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testCreatureSetLife(){
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		Creature player = new PlayerCharacter("JohnDoe");
 		Creature monster = new Monster("Monster", 100, 1, 1);
 		
 		player.setLife(150);
@@ -76,7 +76,7 @@ public class CreatureTest {
 		/*
 		 * Testa karaktärens level karaktären börjar på level 1
 		 */
-		Creature player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		Creature player = new PlayerCharacter("JohnDoe");
 		assertEquals(1, player.getLevel());
 		
 		player.gainLevel();
@@ -85,7 +85,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testGetStrength(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		assertEquals(1, player.getStrength());
 		player.setStrength(2);
@@ -94,7 +94,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testGetStamina(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		assertEquals(1, player.getStamina());
 		
@@ -104,7 +104,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testSetLife(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		player.setLife(110);
 		assertEquals(110,player.getLife());
@@ -120,7 +120,7 @@ public class CreatureTest {
 	@Test
 	public void testGainLevel() {
 		// Karaktären kan bara gå upp 1 lvl i taget
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 
 		assertEquals(1, player.getLevel());
 		player.gainLevel();
@@ -144,27 +144,23 @@ public class CreatureTest {
 	
 	@Test
 	public void testDamageTaken(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
-		player.damageTaken(10);
-		player.damageTaken(10);
-		assertEquals(80, player.getLife());
-		
-		for (int i = 8; i != 0; i--) {
-			player.damageTaken(10);
-		}
-		
+		player.damageTaken(1);
+		assertEquals(5, player.getLife());
+
+		player.damageTaken(4);
+		assertEquals(1, player.getLife());
+
+		player.damageTaken(2);
+
 		assertEquals(0, player.getLife());
-		
-		assertThrows(IllegalStateException.class, () -> {
-			player.damageTaken(10);
-		});
 		
 	}
 	
 	@Test  // INTE FÄRDIG, spelaren ska kunna dodge'a dmg beroende på olika stats 
 	public void testRecieveDamage(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		
 		player.increaseLevel();
 		player.increaseLevel();
@@ -175,7 +171,7 @@ public class CreatureTest {
 	
 	@Test
 	public void testPlayerCharacterDmgDealt(){
-		PlayerCharacter player = new PlayerCharacter("JohnDoe", 100, 1, 1);
+		PlayerCharacter player = new PlayerCharacter("JohnDoe");
 		assertEquals(5, player.damageDealt());
 
 		player.setStrength(2);
